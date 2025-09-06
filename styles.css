@@ -1,0 +1,164 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: url(pexels-sk-814136.jpg)repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+section.hero {
+  backdrop-filter: blur(8px);
+}
+
+header ul {
+  list-style: none;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+header .socials li {
+  width: 48px;
+  height: 48px;
+}
+
+header .socials li:hover {
+  background-color: white;
+  color: #000;
+}
+
+.hero-content-wrapper {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.hero-img {
+  animation: spin3d 8s linear infinite;
+}
+
+.cta-main {
+  width: fit-content;
+}
+
+.cta-main:hover {
+  opacity: 0.75;
+}
+
+.fs-link {
+  font-size: 14px;
+}
+
+/* Projects */
+.projects .project {
+  backdrop-filter: blur(8px);
+}
+
+.projects .project button {
+  outline: none;
+}
+
+.projects .project button:hover {
+  background-color: white !important;
+}
+
+.projects .project button:hover a {
+  color: #000 !important;
+}
+
+.projects .project button p,
+.projects .project button i {
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Footer */
+footer p {
+  font-size: 12px;
+  margin: 0;
+}
+
+footer ul {
+  margin: 0;
+}
+
+/* Animations */
+@keyframes spin3d {
+  0% {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+  25% {
+    transform: rotate3d(0, 1, 0, 45deg);
+  }
+  50% {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+  75% {
+    transform: rotate3d(0, 1, 0, -45deg);
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+}
+
+/* Media queries */
+@media screen and (max-width: 1024px) {
+  section.hero {
+    padding: 16px !important;
+  }
+  .hero-content-wrapper {
+    flex-direction: column-reverse !important;
+    gap: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .hero-text h1 {
+    gap: 8px;
+  }
+
+  .hero-text h1 span {
+    line-height: 40px;
+  }
+
+  .hero-text h1 span:nth-child(2) {
+    font-size: 24px !important;
+  }
+
+  .hero-text p {
+    font-size: 16px !important;
+  }
+
+  .cta-main,
+  .project button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-img {
+    margin-top: 48px !important;
+  }
+
+  .hero-content-wrapper > * {
+    text-align: center;
+  }
+
+  .hero-content-wrapper h1 span::nth-child(1) {
+    font-size: 18px !important;
+  }
+
+  /* Footer */
+  .footer-wrapper {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
