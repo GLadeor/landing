@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GestionPrivacidad - Pre-registro</title>
+    <title>GestionPrivacidad - Solicitud de Eliminación</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +22,7 @@
             <h1 class="text-3xl font-bold text-center text-gray-900">GestionPrivacidad</h1>
             <p class="mt-1 text-center text-sm text-gray-500 italic">We protect you from the nameless</p>
             <p class="mt-4 text-center text-md text-gray-600">
-                <strong>Iniciamos pronto.</strong> Ya estamos recibiendo casos. Déjanos tu información y te contactaremos en cuanto comencemos a operar.
+                Inicia tu solicitud para eliminar contenido no consentido de internet. Ya estamos recibiendo casos para cuando comencemos a operar.
             </p>
         </div>
 
@@ -35,7 +35,7 @@
                 </div>
                 <div>
                     <label for="email" class="sr-only">Correo Electrónico</label>
-                    <input id="email" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Correo Electrónico">
+                    <input id="email" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Correo Electrónico de Contacto">
                 </div>
                 <div>
                     <label for="urls" class="sr-only">URLs a reportar</label>
@@ -47,56 +47,80 @@
                 </div>
             </div>
 
-            <!-- Privacy Policy Section -->
-            <div class="space-y-2">
-                <div class="flex items-center">
-                    <input id="privacyPolicy" name="privacyPolicy" type="checkbox" required class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded">
+            <!-- Declarations Section -->
+            <div class="space-y-4">
+                <!-- Privacy Policy Checkbox -->
+                <div class="flex items-start">
+                    <input id="privacyPolicy" name="privacyPolicy" type="checkbox" required class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded mt-1 flex-shrink-0">
                     <label for="privacyPolicy" class="ml-2 block text-sm text-gray-900">
-                        He leído y acepto el aviso de privacidad.
+                        He leído y acepto el <a href="#privacy-notice" class="font-medium text-red-600 hover:text-red-500">aviso de privacidad</a> y el uso de mis datos personales.
                     </label>
                 </div>
-                <p class="text-xs text-gray-500 px-1">Al enviar tu información aceptas el uso de tus datos personales.</p>
+                
+                <!-- Good Faith Declaration Checkbox -->
+                <div class="flex items-start">
+                    <input id="goodFaith" name="goodFaith" type="checkbox" required class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded mt-1 flex-shrink-0">
+                    <label for="goodFaith" class="ml-2 block text-sm text-gray-900">
+                        <span class="font-bold">Declaro de buena fe y bajo protesta de decir verdad que:</span> (i) soy la persona que aparece en el contenido reportado o estoy legalmente autorizado/a para actuar en su nombre, y (ii) entiendo que realizar una declaración falsa puede tener consecuencias legales.
+                    </label>
+                </div>
+
+                <!-- No Consent Declaration Checkbox -->
+                <div class="flex items-start">
+                    <input id="noConsent" name="noConsent" type="checkbox" required class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded mt-1 flex-shrink-0">
+                    <label for="noConsent" class="ml-2 block text-sm text-gray-900">
+                        Manifiesto que la distribución del material reportado se ha realizado <span class="font-bold">sin el consentimiento explícito</span> mío o de la persona a quien legalmente represento.
+                    </label>
+                </div>
+
+                <!-- Intimate Content Declaration Checkbox -->
+                <div class="flex items-start">
+                    <input id="intimateContent" name="intimateContent" type="checkbox" required class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded mt-1 flex-shrink-0">
+                    <label for="intimateContent" class="ml-2 block text-sm text-gray-900">
+                        Confirmo que el material reportado es de <span class="font-bold">naturaleza íntima</span> (desnudez, semidesnudez o actos sexuales).
+                    </label>
+                </div>
+
+                <!-- Over 18 Declaration Checkbox -->
+                <div class="flex items-start">
+                    <input id="over18" name="over18" type="checkbox" required class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded mt-1 flex-shrink-0">
+                    <label for="over18" class="ml-2 block text-sm text-gray-900">
+                        Acepto y declaro que la persona que aparece en el contenido reportado era <span class="font-bold">mayor de 18 años</span> al momento en que se creó el material.
+                    </label>
+                </div>
             </div>
-            <!-- End Privacy Policy Section -->
+            <!-- End Declarations Section -->
 
             <div>
                 <button type="submit" id="submitButton" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-300">
-                    <span id="buttonText">Enviar Información</span>
+                    <span id="buttonText">Enviar Solicitud</span>
                     <span id="buttonSpinner" class="hidden h-5 w-5 animate-spin">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0011.667 0l3.181-3.183m-4.991-2.695v-2.126c0-1.158-.94-2.1-2.1-2.1H9.825a2.1 2.1 0 00-2.1 2.1v2.126m4.992 0h-4.992" />
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0011.667 0l3.181-3.183m-4.991-2.695v-2.126c0-1.158-.94-2.1-2.1-2.1H9.825a2.1 2.1 0 00-2.1 2.1v2.126m4.992 0h-4.992" /></svg>
                     </span>
                 </button>
             </div>
         </form>
         
         <!-- Result Message Area -->
-        <div id="resultMessage" class="text-center text-sm"></div>
+        <div id="resultMessage" class="text-center text-sm pt-4"></div>
 
     </main>
 
     <!-- Detailed Privacy Notice -->
-    <section class="w-full max-w-xl px-8 text-xs text-gray-600">
+    <section id="privacy-notice" class="w-full max-w-xl px-8 text-xs text-gray-600 scroll-mt-10">
         <h2 class="font-bold text-sm mb-2 text-gray-800">Aviso de Privacidad Integral</h2>
         <p class="mb-2">De conformidad con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, <strong>GestionPrivacidad</strong>, con domicilio ficticio en Av. Siempre Viva 123, Springfield, es el responsable del uso y protección de sus datos personales.</p>
-        
         <h3 class="font-semibold mt-3 mb-1 text-gray-700">1. Datos personales que recabamos</h3>
         <p>Para las finalidades señaladas en el presente aviso, recabaremos los siguientes datos personales: nombre completo, correo electrónico, URL proporcionada (opcional) y el mensaje que nos envíe.</p>
-
         <h3 class="font-semibold mt-3 mb-1 text-gray-700">2. Finalidades del tratamiento de sus datos</h3>
         <p>Los datos que recabamos serán utilizados para las siguientes finalidades primarias y necesarias: <strong>(a)</strong> Identificarle y ponernos en contacto con usted para dar seguimiento a su solicitud o comentario. <strong>(b)</strong> Atender y procesar los reportes de URLs que nos envíe. <strong>(c)</strong> Proveerle la información y los servicios que solicite.</p>
-
         <h3 class="font-semibold mt-3 mb-1 text-gray-700">3. Transferencia de datos personales</h3>
         <p>Le informamos que sus datos personales no serán compartidos con terceros, salvo por requerimientos de una autoridad competente debidamente fundados y motivados.</p>
-
         <h3 class="font-semibold mt-3 mb-1 text-gray-700">4. Derechos ARCO (Acceso, Rectificación, Cancelación y Oposición)</h3>
         <p>Usted tiene derecho a conocer qué datos personales tenemos de usted, para qué los utilizamos y las condiciones del uso que les damos (Acceso). Asimismo, es su derecho solicitar la corrección de su información personal en caso de que esté desactualizada, sea inexacta o incompleta (Rectificación); que la eliminemos de nuestros registros o bases de datos cuando considere que la misma no está siendo utilizada conforme a los principios, deberes y obligaciones previstas en la normativa (Cancelación); así como oponerse al uso de sus datos personales para fines específicos (Oposición). Para el ejercicio de cualquiera de los derechos ARCO, deberá enviar una solicitud por el medio de usual comunicación.</p>
-
         <h3 class="font-semibold mt-3 mb-1 text-gray-700">5. Cambios al aviso de privacidad</h3>
         <p>El presente aviso de privacidad puede sufrir modificaciones, cambios o actualizaciones derivadas de nuevos requerimientos legales. Nos comprometemos a mantenerlo informado sobre los cambios que pueda sufrir el presente, a través de nuestro sitio web.</p>
-        
-        <p class="mt-2"><strong>Última actualización:</strong> 19 de septiembre de 2025.</p>
+        <p class="mt-2"><strong>Última actualización:</strong> 20 de septiembre de 2025.</p>
     </section>
 
     <footer class="text-center p-4 mt-4 text-gray-500 text-sm">
@@ -110,66 +134,80 @@
         const buttonSpinner = document.getElementById('buttonSpinner');
         const resultMessage = document.getElementById('resultMessage');
         const privacyCheckbox = document.getElementById('privacyPolicy');
+        const goodFaithCheckbox = document.getElementById('goodFaith');
+        const noConsentCheckbox = document.getElementById('noConsent');
+        const intimateContentCheckbox = document.getElementById('intimateContent');
+        const over18Checkbox = document.getElementById('over18');
         const urlsTextarea = document.getElementById('urls');
 
         contactForm.addEventListener('submit', async (event) => {
             event.preventDefault();
 
-            // Clear previous messages
             resultMessage.textContent = '';
             resultMessage.classList.remove('text-green-600', 'text-red-600');
 
-            // Validate URLs count
             const urls = urlsTextarea.value.split('\n').filter(url => url.trim() !== '');
             if (urls.length > 15) {
                 resultMessage.textContent = 'Por favor, no introduzcas más de 15 URLs.';
                 resultMessage.classList.add('text-red-600');
-                return; // Stop the submission
+                return;
             }
 
-            // Validate privacy policy checkbox
             if (!privacyCheckbox.checked) {
                 resultMessage.textContent = 'Por favor, acepta el aviso de privacidad para continuar.';
                 resultMessage.classList.add('text-red-600');
-                return; // Stop the submission
+                return;
+            }
+            
+            if (!goodFaithCheckbox.checked) {
+                resultMessage.textContent = 'Debe aceptar la declaración de buena fe para poder enviar su solicitud.';
+                resultMessage.classList.add('text-red-600');
+                return;
             }
 
-            // 1. Disable button and show spinner
+            if (!noConsentCheckbox.checked) {
+                resultMessage.textContent = 'Debe declarar la falta de consentimiento para continuar.';
+                resultMessage.classList.add('text-red-600');
+                return;
+            }
+
+            if (!intimateContentCheckbox.checked) {
+                resultMessage.textContent = 'Debe confirmar que el material es de naturaleza íntima.';
+                resultMessage.classList.add('text-red-600');
+                return;
+            }
+
+            if (!over18Checkbox.checked) {
+                resultMessage.textContent = 'Error: Nuestro servicio solo gestiona contenido de adultos. Si el material involucra a un menor, detén esta solicitud y repórtalo de inmediato a las autoridades.';
+                resultMessage.classList.add('text-red-600');
+                return;
+            }
+
             submitButton.disabled = true;
             buttonText.classList.add('hidden');
             buttonSpinner.classList.remove('hidden');
 
-            // 2. Get form data
             const formData = new FormData(contactForm);
             const data = Object.fromEntries(formData.entries());
 
             try {
-                // 3. Send data to the serverless function
                 const response = await fetch('/api/submit', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data),
                 });
-
                 const result = await response.json();
-
                 if (response.ok) {
-                    // Success
-                    resultMessage.textContent = '¡Gracias! Tu información ha sido enviada. Nos pondremos en contacto al iniciar operaciones.';
+                    resultMessage.textContent = '¡Gracias! Tu solicitud ha sido enviada. Nos pondremos en contacto al iniciar operaciones.';
                     resultMessage.classList.add('text-green-600');
                     contactForm.reset();
                 } else {
-                    // Failure
                     throw new Error(result.error || 'Algo salió mal.');
                 }
-
             } catch (error) {
                 resultMessage.textContent = `Error: ${error.message}`;
                 resultMessage.classList.add('text-red-600');
             } finally {
-                // 4. Re-enable button and hide spinner
                 submitButton.disabled = false;
                 buttonText.classList.remove('hidden');
                 buttonSpinner.classList.add('hidden');
