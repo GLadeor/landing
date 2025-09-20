@@ -7,137 +7,147 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Se añade la fuente 'Lora' para los títulos, dándole un toque más humano y editorial -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            /* Nuevo fondo con efecto de sombras de persiana para dar una sensación de privacidad */
+            background-color: #f8fafc; /* Color base (Tailwind's slate-50) */
+            background-image: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 30px,
+                rgba(0, 0, 0, 0.025) 30px,
+                rgba(0, 0, 0, 0.025) 60px
+            );
+        }
+        /* La nueva fuente para el encabezado principal */
+        .font-lora {
+            font-family: 'Lora', serif;
+        }
+        /* Ajuste para que los checkboxes inválidos resalten con el color de la marca */
+        input[type="checkbox"]:required:invalid {
+            border-color: #1d4ed8; /* Azul */
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 flex flex-col items-center justify-center min-h-screen py-10">
+<body class="text-gray-800">
 
-    <main class="w-full max-w-xl p-8 space-y-8 bg-white rounded-2xl shadow-lg m-4">
-        <!-- Header Section -->
-        <div>
-            <h1 class="text-3xl font-bold text-center text-gray-900">GestionPrivacidad</h1>
-            <p class="mt-1 text-center text-sm text-gray-500 italic">We protect you from the nameless</p>
-            <p class="mt-4 text-center text-md text-gray-600">
-                Inicia tu solicitud para eliminar contenido no consentido de internet. Ya estamos recibiendo casos para cuando comencemos a operar.
-            </p>
+    <!-- Cabecera rediseñada con logo y tipografía distintiva -->
+    <header class="w-full bg-gray-900 text-white p-6 shadow-xl">
+        <div class="max-w-4xl mx-auto flex items-center justify-center space-x-4">
+             <!-- Icono/Logo para dar identidad de marca -->
+            <svg class="w-10 h-10 text-blue-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" />
+            </svg>
+            <div class="text-left">
+                <h1 class="text-4xl font-lora tracking-tight">GestionPrivacidad</h1>
+                <p class="mt-1 text-lg text-slate-300 italic">We protect you from the nameless</p>
+            </div>
         </div>
+    </header>
 
-        <!-- Contact Form -->
-        <form id="contactForm" class="mt-8 space-y-6">
-            <div class="rounded-md shadow-sm -space-y-px">
-                <div>
-                    <label for="name" class="sr-only">Nombre Completo</label>
-                    <input id="name" name="name" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Nombre Completo">
-                </div>
-                <div>
-                    <label for="email" class="sr-only">Correo Electrónico</label>
-                    <input id="email" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Correo Electrónico de Contacto">
-                </div>
-                <div>
-                    <label for="urls" class="sr-only">URLs a reportar</label>
-                    <textarea id="urls" name="urls" rows="5" class="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Introduce hasta 15 URLs a reportar (una por línea, opcional)"></textarea>
-                </div>
-                 <div>
-                    <label for="message" class="sr-only">Mensaje</label>
-                    <textarea id="message" name="message" rows="4" required class="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Por favor, describe la situación y cómo se filtró el contenido. Incluye cualquier detalle que consideres relevante."></textarea>
-                </div>
-            </div>
-
-            <!-- Declarations Section -->
-            <div class="space-y-4">
-                <!-- Privacy Policy Checkbox -->
-                <div class="flex items-start">
-                    <input id="privacyPolicy" name="privacyPolicy" type="checkbox" required class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded mt-1 flex-shrink-0">
-                    <label for="privacyPolicy" class="ml-2 block text-sm text-gray-900">
-                        He leído y acepto el <a href="#privacy-notice" class="font-medium text-red-600 hover:text-red-500">aviso de privacidad</a> y el uso de mis datos personales.
-                    </label>
-                </div>
-                
-                <!-- Good Faith Declaration Checkbox -->
-                <div class="flex items-start">
-                    <input id="goodFaith" name="goodFaith" type="checkbox" required class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded mt-1 flex-shrink-0">
-                    <label for="goodFaith" class="ml-2 block text-sm text-gray-900">
-                        <span class="font-bold">Declaro de buena fe y bajo protesta de decir verdad que:</span> (i) soy la persona que aparece en el contenido reportado o estoy legalmente autorizado/a para actuar en su nombre, y (ii) entiendo que realizar una declaración falsa puede tener consecuencias legales.
-                    </label>
-                </div>
-
-                <!-- No Consent Declaration Checkbox -->
-                <div class="flex items-start">
-                    <input id="noConsent" name="noConsent" type="checkbox" required class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded mt-1 flex-shrink-0">
-                    <label for="noConsent" class="ml-2 block text-sm text-gray-900">
-                        Manifiesto que la distribución del material reportado se ha realizado <span class="font-bold">sin el consentimiento explícito</span> mío o de la persona a quien legalmente represento.
-                    </label>
-                </div>
-
-                <!-- Intimate Content Declaration Checkbox -->
-                <div class="flex items-start">
-                    <input id="intimateContent" name="intimateContent" type="checkbox" required class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded mt-1 flex-shrink-0">
-                    <label for="intimateContent" class="ml-2 block text-sm text-gray-900">
-                        Confirmo que el material reportado es de <span class="font-bold">naturaleza íntima</span> (desnudez, semidesnudez o actos sexuales).
-                    </label>
-                </div>
-
-                <!-- Over 18 Declaration Checkbox -->
-                <div class="flex items-start">
-                    <input id="over18" name="over18" type="checkbox" required class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded mt-1 flex-shrink-0">
-                    <label for="over18" class="ml-2 block text-sm text-gray-900">
-                        Acepto y declaro que la persona que aparece en el contenido reportado era <span class="font-bold">mayor de 18 años</span> al momento en que se creó el material.
-                    </label>
-                </div>
-            </div>
-            <!-- End Declarations Section -->
-
+    <!-- Contenedor principal para centrar el formulario -->
+    <div class="flex flex-col items-center justify-center py-10 px-4">
+        <main class="w-full max-w-xl p-8 space-y-8 bg-white rounded-2xl shadow-xl">
+            <!-- Sección de cabecera simplificada para un flujo más directo -->
             <div>
-                <button type="submit" id="submitButton" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-300">
-                    <span id="buttonText">Enviar Solicitud</span>
-                    <span id="buttonSpinner" class="hidden h-5 w-5 animate-spin">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0011.667 0l3.181-3.183m-4.991-2.695v-2.126c0-1.158-.94-2.1-2.1-2.1H9.825a2.1 2.1 0 00-2.1 2.1v2.126m4.992 0h-4.992" /></svg>
-                    </span>
-                </button>
+                <p class="text-center text-md text-gray-700">
+                    Completa los siguientes campos para iniciar tu solicitud de eliminación de contenido. Tu caso será de los primeros en ser atendido cuando comencemos a operar.
+                </p>
             </div>
-        </form>
-        
-        <!-- Result Message Area -->
-        <div id="resultMessage" class="text-center text-sm pt-4"></div>
 
-    </main>
+            <!-- Formulario de Contacto -->
+            <form id="contactForm" class="mt-8 space-y-6">
+                <div class="space-y-4">
+                    <div>
+                        <label for="name" class="sr-only">Nombre Completo</label>
+                        <input id="name" name="name" type="text" required class="appearance-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-all" placeholder="Nombre Completo">
+                    </div>
+                    <div>
+                        <label for="email" class="sr-only">Correo Electrónico</label>
+                        <input id="email" name="email" type="email" autocomplete="email" required class="appearance-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-all" placeholder="Correo Electrónico de Contacto">
+                    </div>
+                    <div>
+                        <label for="urls" class="sr-only">URLs a reportar</label>
+                        <textarea id="urls" name="urls" rows="5" class="appearance-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-all" placeholder="Introduce hasta 15 URLs a reportar (una por línea, opcional)"></textarea>
+                    </div>
+                     <div>
+                        <label for="message" class="sr-only">Mensaje</label>
+                        <textarea id="message" name="message" rows="4" required class="appearance-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-all" placeholder="Describe la situación y cómo se filtró el contenido..."></textarea>
+                    </div>
+                </div>
 
-    <!-- Detailed Privacy Notice -->
-    <section id="privacy-notice" class="w-full max-w-xl px-8 text-xs text-gray-600 scroll-mt-10">
-        <h2 class="font-bold text-sm mb-2 text-gray-800">Aviso de Privacidad Integral</h2>
-        <p class="mb-2">De conformidad con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, <strong>GestionPrivacidad</strong>, con domicilio ficticio en Av. Siempre Viva 123, Springfield, es el responsable del uso y protección de sus datos personales.</p>
-        <h3 class="font-semibold mt-3 mb-1 text-gray-700">1. Datos personales que recabamos</h3>
-        <p>Para las finalidades señaladas en el presente aviso, recabaremos los siguientes datos personales: nombre completo, correo electrónico, URL proporcionada (opcional) y el mensaje que nos envíe.</p>
-        <h3 class="font-semibold mt-3 mb-1 text-gray-700">2. Finalidades del tratamiento de sus datos</h3>
-        <p>Los datos que recabamos serán utilizados para las siguientes finalidades primarias y necesarias: <strong>(a)</strong> Identificarle y ponernos en contacto con usted para dar seguimiento a su solicitud o comentario. <strong>(b)</strong> Atender y procesar los reportes de URLs que nos envíe. <strong>(c)</strong> Proveerle la información y los servicios que solicite.</p>
-        <h3 class="font-semibold mt-3 mb-1 text-gray-700">3. Transferencia de datos personales</h3>
-        <p>Le informamos que sus datos personales no serán compartidos con terceros, salvo por requerimientos de una autoridad competente debidamente fundados y motivados.</p>
-        <h3 class="font-semibold mt-3 mb-1 text-gray-700">4. Derechos ARCO (Acceso, Rectificación, Cancelación y Oposición)</h3>
-        <p>Usted tiene derecho a conocer qué datos personales tenemos de usted, para qué los utilizamos y las condiciones del uso que les damos (Acceso). Asimismo, es su derecho solicitar la corrección de su información personal en caso de que esté desactualizada, sea inexacta o incompleta (Rectificación); que la eliminemos de nuestros registros o bases de datos cuando considere que la misma no está siendo utilizada conforme a los principios, deberes y obligaciones previstas en la normativa (Cancelación); así como oponerse al uso de sus datos personales para fines específicos (Oposición). Para el ejercicio de cualquiera de los derechos ARCO, deberá enviar una solicitud por el medio de usual comunicación.</p>
-        <h3 class="font-semibold mt-3 mb-1 text-gray-700">5. Cambios al aviso de privacidad</h3>
-        <p>El presente aviso de privacidad puede sufrir modificaciones, cambios o actualizaciones derivadas de nuevos requerimientos legales. Nos comprometemos a mantenerlo informado sobre los cambios que pueda sufrir el presente, a través de nuestro sitio web.</p>
-        <p class="mt-2"><strong>Última actualización:</strong> 20 de septiembre de 2025.</p>
-    </section>
+                <!-- Sección de Declaraciones -->
+                <div class="space-y-4 pt-4 border-t">
+                    <div class="flex items-start">
+                        <input id="privacyPolicy" name="privacyPolicy" type="checkbox" required class="h-4 w-4 text-blue-700 focus:ring-blue-500 border-gray-300 rounded mt-1 flex-shrink-0">
+                        <label for="privacyPolicy" class="ml-3 block text-sm text-gray-900">
+                            He leído y acepto el <a href="#privacy-notice" class="font-medium text-blue-700 hover:text-blue-600 underline">aviso de privacidad</a>.
+                        </label>
+                    </div>
+                    <div class="flex items-start">
+                        <input id="goodFaith" name="goodFaith" type="checkbox" required class="h-4 w-4 text-blue-700 focus:ring-blue-500 border-gray-300 rounded mt-1 flex-shrink-0">
+                        <label for="goodFaith" class="ml-3 block text-sm text-gray-900">
+                            <span class="font-bold">Declaro de buena fe</span> que soy la persona afectada o estoy autorizada para actuar en su nombre.
+                        </label>
+                    </div>
+                    <div class="flex items-start">
+                        <input id="noConsent" name="noConsent" type="checkbox" required class="h-4 w-4 text-blue-700 focus:ring-blue-500 border-gray-300 rounded mt-1 flex-shrink-0">
+                        <label for="noConsent" class="ml-3 block text-sm text-gray-900">
+                            Manifiesto que el material fue distribuido <span class="font-bold">sin consentimiento</span>.
+                        </label>
+                    </div>
+                    <div class="flex items-start">
+                        <input id="intimateContent" name="intimateContent" type="checkbox" required class="h-4 w-4 text-blue-700 focus:ring-blue-500 border-gray-300 rounded mt-1 flex-shrink-0">
+                        <label for="intimateContent" class="ml-3 block text-sm text-gray-900">
+                            Confirmo que el material es de <span class="font-bold">naturaleza íntima</span>.
+                        </label>
+                    </div>
+                    <div class="flex items-start">
+                        <input id="over18" name="over18" type="checkbox" required class="h-4 w-4 text-blue-700 focus:ring-blue-500 border-gray-300 rounded mt-1 flex-shrink-0">
+                        <label for="over18" class="ml-3 block text-sm text-gray-900">
+                            Declaro que la persona en el contenido era <span class="font-bold">mayor de 18 años</span> cuando se creó.
+                        </label>
+                    </div>
+                </div>
+                <!-- Fin de la Sección de Declaraciones -->
 
-    <footer class="text-center p-4 mt-4 text-gray-500 text-sm">
-        <p>We protect you from the nameless</p>
-    </footer>
+                <div>
+                    <button type="submit" id="submitButton" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-semibold rounded-lg text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 transform hover:scale-105">
+                        <span id="buttonText">Enviar Solicitud</span>
+                        <span id="buttonSpinner" class="hidden h-5 w-5">
+                            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </form>
+            
+            <div id="resultMessage" class="text-center text-sm pt-4 font-medium"></div>
+        </main>
 
+        <section id="privacy-notice" class="w-full max-w-xl px-8 text-xs text-gray-600 scroll-mt-20 my-8">
+            <h2 class="font-bold text-sm mb-2 text-gray-800">Aviso de Privacidad Integral</h2>
+            <p class="mb-2">De conformidad con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, <strong>GestionPrivacidad</strong>, es el responsable del uso y protección de sus datos personales.</p>
+            <p>Los datos recabados serán utilizados únicamente para identificarle, contactarle y dar seguimiento a su solicitud. No serán compartidos con terceros, salvo por requerimiento de una autoridad competente. Usted puede ejercer sus derechos de Acceso, Rectificación, Cancelación u Oposición (ARCO) en cualquier momento a través de nuestros canales de contacto. Cualquier cambio a este aviso será publicado en este sitio.</p>
+            <p class="mt-2"><strong>Última actualización:</strong> 20 de septiembre de 2025.</p>
+        </section>
+
+        <!-- Pie de página actualizado -->
+        <footer class="text-center p-4 mt-4 text-gray-500 text-sm">
+            <p>&copy; 2025 GestionPrivacidad. Todos los derechos reservados.</p>
+        </footer>
+    </div>
     <script>
         const contactForm = document.getElementById('contactForm');
         const submitButton = document.getElementById('submitButton');
         const buttonText = document.getElementById('buttonText');
         const buttonSpinner = document.getElementById('buttonSpinner');
         const resultMessage = document.getElementById('resultMessage');
-        const privacyCheckbox = document.getElementById('privacyPolicy');
-        const goodFaithCheckbox = document.getElementById('goodFaith');
-        const noConsentCheckbox = document.getElementById('noConsent');
-        const intimateContentCheckbox = document.getElementById('intimateContent');
-        const over18Checkbox = document.getElementById('over18');
         const urlsTextarea = document.getElementById('urls');
 
         contactForm.addEventListener('submit', async (event) => {
@@ -153,39 +163,28 @@
                 return;
             }
 
-            if (!privacyCheckbox.checked) {
-                resultMessage.textContent = 'Por favor, acepta el aviso de privacidad para continuar.';
-                resultMessage.classList.add('text-red-600');
-                return;
+            const requiredCheckboxes = contactForm.querySelectorAll('input[type="checkbox"][required]');
+            let allChecked = true;
+            for (const checkbox of requiredCheckboxes) {
+                if (!checkbox.checked) {
+                    let errorMessage = 'Debe aceptar todas las declaraciones para poder enviar su solicitud.';
+                    if (checkbox.id === 'privacyPolicy') errorMessage = 'Por favor, acepta el aviso de privacidad para continuar.';
+                    if (checkbox.id === 'over18') errorMessage = 'Error: Nuestro servicio solo gestiona contenido de adultos. Si el material involucra a un menor, detén esta solicitud y repórtalo de inmediato a las autoridades.';
+                    
+                    resultMessage.textContent = errorMessage;
+                    resultMessage.classList.add('text-red-600');
+                    allChecked = false;
+                    break;
+                }
             }
+
+            if (!allChecked) return;
             
-            if (!goodFaithCheckbox.checked) {
-                resultMessage.textContent = 'Debe aceptar la declaración de buena fe para poder enviar su solicitud.';
-                resultMessage.classList.add('text-red-600');
-                return;
-            }
-
-            if (!noConsentCheckbox.checked) {
-                resultMessage.textContent = 'Debe declarar la falta de consentimiento para continuar.';
-                resultMessage.classList.add('text-red-600');
-                return;
-            }
-
-            if (!intimateContentCheckbox.checked) {
-                resultMessage.textContent = 'Debe confirmar que el material es de naturaleza íntima.';
-                resultMessage.classList.add('text-red-600');
-                return;
-            }
-
-            if (!over18Checkbox.checked) {
-                resultMessage.textContent = 'Error: Nuestro servicio solo gestiona contenido de adultos. Si el material involucra a un menor, detén esta solicitud y repórtalo de inmediato a las autoridades.';
-                resultMessage.classList.add('text-red-600');
-                return;
-            }
-
             submitButton.disabled = true;
             buttonText.classList.add('hidden');
             buttonSpinner.classList.remove('hidden');
+            buttonSpinner.classList.add('flex', 'justify-center');
+
 
             const formData = new FormData(contactForm);
             const data = Object.fromEntries(formData.entries());
@@ -211,10 +210,13 @@
                 submitButton.disabled = false;
                 buttonText.classList.remove('hidden');
                 buttonSpinner.classList.add('hidden');
+                buttonSpinner.classList.remove('flex', 'justify-center');
             }
         });
     </script>
 
 </body>
 </html>
+
+
 
