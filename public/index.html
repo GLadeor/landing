@@ -6,142 +6,148 @@
     <title>GestionPrivacidad - Solicitud de Eliminación</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Se añade la fuente 'Lora' para los títulos, dándole un toque más humano y editorial -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <!-- Se añade Share Tech Mono para un look más tecnológico en los títulos -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            /* Nuevo fondo con efecto de sombras de persiana para dar una sensación de privacidad */
-            background-color: #f8fafc; /* Color base (Tailwind's slate-50) */
-            background-image: repeating-linear-gradient(
-                -45deg,
-                transparent,
-                transparent 30px,
-                rgba(0, 0, 0, 0.025) 30px,
-                rgba(0, 0, 0, 0.025) 60px
-            );
+            /* NUEVO: Fondo oscuro con patrón de rejilla digital para un look cyberpunk/tech */
+            background-color: #111827; /* Tailwind's gray-900 */
+            color: #d1d5db; /* gray-300 */
+            background-image: 
+                linear-gradient(rgba(19, 182, 219, 0.1) 1px, transparent 1px),
+                linear-gradient(to right, rgba(19, 182, 219, 0.1) 1px, transparent 1px);
+            background-size: 3rem 3rem;
         }
-        /* La nueva fuente para el encabezado principal */
-        .font-lora {
-            font-family: 'Lora', serif;
+        .font-tech {
+            font-family: 'Share Tech Mono', monospace;
         }
-        /* Ajuste para que los checkboxes inválidos resalten con el color de la marca */
-        input[type="checkbox"]:required:invalid {
-            border-color: #1d4ed8; /* Azul */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Efecto de brillo para elementos interactivos */
+        .neon-glow-hover:hover {
+            box-shadow: 0 0 5px #06b6d4, 0 0 10px #06b6d4, 0 0 15px #06b6d4;
         }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="antialiased">
 
-    <!-- Cabecera rediseñada con logo y tipografía distintiva -->
-    <header class="w-full bg-gray-900 text-white p-6 shadow-xl">
-        <div class="max-w-4xl mx-auto flex items-center justify-center space-x-4">
-             <!-- Icono/Logo para dar identidad de marca -->
-            <svg class="w-10 h-10 text-blue-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" />
-            </svg>
-            <div class="text-left">
-                <h1 class="text-4xl font-lora tracking-tight">GestionPrivacidad</h1>
-                <p class="mt-1 text-lg text-slate-300 italic">We protect you from the nameless</p>
+    <!-- Header rediseñado con el nuevo tema oscuro y acentos cian -->
+    <header class="w-full bg-gray-900/50 backdrop-blur-sm border-b border-cyan-500/20 text-white p-6 sticky top-0 z-40">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            <div>
+                <p class="text-lg font-tech text-cyan-400 tracking-widest">We protect you from the nameless</p>
             </div>
+            <a href="#formulario" class="bg-transparent border-2 border-cyan-400 text-cyan-400 font-bold py-2 px-4 rounded-lg hover:bg-cyan-400 hover:text-gray-900 transition-colors duration-300 neon-glow-hover">Iniciar Solicitud</a>
         </div>
     </header>
 
-    <!-- Contenedor principal para centrar el formulario -->
     <div class="flex flex-col items-center justify-center py-10 px-4">
-        <main class="w-full max-w-xl p-8 space-y-8 bg-white rounded-2xl shadow-xl">
-            <!-- Sección de cabecera simplificada para un flujo más directo -->
-            <div>
-                <p class="text-center text-md text-gray-700">
-                    Completa los siguientes campos para iniciar tu solicitud de eliminación de contenido. Tu caso será de los primeros en ser atendido cuando comencemos a operar.
-                </p>
+        
+        <!-- SECCIÓN DE INTRODUCCIÓN con nueva tipografía y estilo -->
+        <section class="w-full max-w-4xl text-center mb-16 relative py-16">
+            <h2 class="text-4xl font-tech text-white sm:text-6xl uppercase tracking-wider">Recupera tu Paz y Control Digital</h2>
+            <p class="mt-6 text-lg text-gray-400 max-w-2xl mx-auto">
+                En GestionPrivacidad, te ofrecemos un camino confidencial y profesional para remover de internet imágenes y videos privados que han sido expuestos sin tu permiso. No estás sola/o en esto.
+            </p>
+        </section>
+
+        <!-- SECCIÓN DE PROCESO con tarjetas estilo tech -->
+        <section class="w-full max-w-4xl mb-16">
+            <h3 class="text-3xl font-tech text-center text-white mb-12 uppercase">Nuestro Proceso Simplificado</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-gray-800/50 border border-cyan-500/20 p-6 rounded-xl backdrop-blur-sm hover:border-cyan-400 transition-colors duration-300">
+                    <div class="bg-cyan-900/50 border border-cyan-500/30 text-cyan-400 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                    </div>
+                    <h4 class="text-xl font-semibold text-white mb-2">1. Envía tu Caso</h4>
+                    <p class="text-gray-400">Completa nuestro formulario seguro. Es el primer paso confidencial para tomar el control.</p>
+                </div>
+                <div class="bg-gray-800/50 border border-cyan-500/20 p-6 rounded-xl backdrop-blur-sm hover:border-cyan-400 transition-colors duration-300">
+                     <div class="bg-cyan-900/50 border border-cyan-500/30 text-cyan-400 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+                    </div>
+                    <h4 class="text-xl font-semibold text-white mb-2">2. Análisis y Estrategia</h4>
+                    <p class="text-gray-400">Nuestro equipo desarrolla una estrategia a medida para la eliminación efectiva del contenido.</p>
+                </div>
+                <div class="bg-gray-800/50 border border-cyan-500/20 p-6 rounded-xl backdrop-blur-sm hover:border-cyan-400 transition-colors duration-300">
+                     <div class="bg-cyan-900/50 border border-cyan-500/30 text-cyan-400 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <h4 class="text-xl font-semibold text-white mb-2">3. Acción y Seguimiento</h4>
+                    <p class="text-gray-400">Actuamos para solicitar la baja del contenido y te mantenemos al tanto del proceso.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DEL FORMULARIO -->
+        <section id="formulario" class="w-full max-w-xl scroll-mt-24">
+            <h3 class="text-3xl font-tech text-center text-white mb-8 uppercase">Inicia tu Solicitud Confidencial</h3>
+            <div class="w-full bg-cyan-900/50 border-l-4 border-cyan-400 text-cyan-200 p-6 rounded-r-lg shadow-md mb-8">
+                <div class="flex">
+                    <div class="py-1 flex-shrink-0">
+                        <svg class="w-6 h-6 text-cyan-400 mr-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-1 text-white">Estamos aquí para ayudarte</h4>
+                        <p class="text-sm">Si el contenido es íntimo, sin consentimiento y de un adulto, has llegado al lugar correcto. Completa el formulario para analizar tu caso.</p>
+                    </div>
+                </div>
             </div>
 
-            <!-- Formulario de Contacto -->
-            <form id="contactForm" class="mt-8 space-y-6">
-                <div class="space-y-4">
-                    <div>
-                        <label for="name" class="sr-only">Nombre Completo</label>
-                        <input id="name" name="name" type="text" required class="appearance-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-all" placeholder="Nombre Completo">
+            <main class="w-full p-8 space-y-8 bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl border border-cyan-500/20">
+                <form id="contactForm" class="space-y-6" novalidate>
+                    <div class="space-y-4">
+                        <input id="name" name="name" type="text" required class="bg-gray-900 border border-gray-700 text-white placeholder-gray-500 rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-3 transition-all" placeholder="Nombre Completo">
+                        <input id="email" name="email" type="email" autocomplete="email" required class="bg-gray-900 border border-gray-700 text-white placeholder-gray-500 rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-3 transition-all" placeholder="Correo Electrónico de Contacto">
+                        <textarea id="urls" name="urls" rows="5" class="bg-gray-900 border border-gray-700 text-white placeholder-gray-500 rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-3 transition-all" placeholder="Introduce hasta 15 URLs a reportar..."></textarea>
+                        <textarea id="message" name="message" rows="4" required class="bg-gray-900 border border-gray-700 text-white placeholder-gray-500 rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-3 transition-all" placeholder="Describe la situación..."></textarea>
                     </div>
-                    <div>
-                        <label for="email" class="sr-only">Correo Electrónico</label>
-                        <input id="email" name="email" type="email" autocomplete="email" required class="appearance-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-all" placeholder="Correo Electrónico de Contacto">
-                    </div>
-                    <div>
-                        <label for="urls" class="sr-only">URLs a reportar</label>
-                        <textarea id="urls" name="urls" rows="5" class="appearance-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-all" placeholder="Introduce hasta 15 URLs a reportar (una por línea, opcional)"></textarea>
-                    </div>
-                     <div>
-                        <label for="message" class="sr-only">Mensaje</label>
-                        <textarea id="message" name="message" rows="4" required class="appearance-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-all" placeholder="Describe la situación y cómo se filtró el contenido..."></textarea>
-                    </div>
-                </div>
 
-                <!-- Sección de Declaraciones -->
-                <div class="space-y-4 pt-4 border-t">
-                    <div class="flex items-start">
-                        <input id="privacyPolicy" name="privacyPolicy" type="checkbox" required class="h-4 w-4 text-blue-700 focus:ring-blue-500 border-gray-300 rounded mt-1 flex-shrink-0">
-                        <label for="privacyPolicy" class="ml-3 block text-sm text-gray-900">
-                            He leído y acepto el <a href="#privacy-notice" class="font-medium text-blue-700 hover:text-blue-600 underline">aviso de privacidad</a>.
-                        </label>
+                    <div class="space-y-4 pt-4 border-t border-gray-700">
+                        <div class="flex items-start"><input id="privacyPolicy" name="privacyPolicy" type="checkbox" required class="h-4 w-4 text-cyan-600 bg-gray-700 border-gray-600 rounded focus:ring-cyan-500 mt-1 flex-shrink-0"><label for="privacyPolicy" class="ml-3 block text-sm text-gray-300">He leído y acepto el <a href="#privacy-notice" class="font-medium text-cyan-400 hover:underline">aviso de privacidad</a>.</label></div>
+                        <div class="flex items-start"><input id="goodFaith" name="goodFaith" type="checkbox" required class="h-4 w-4 text-cyan-600 bg-gray-700 border-gray-600 rounded focus:ring-cyan-500 mt-1 flex-shrink-0"><label for="goodFaith" class="ml-3 block text-sm text-gray-300"><span class="font-bold text-white">Declaro de buena fe</span> que soy la persona afectada o autorizada.</label></div>
+                        <div class="flex items-start"><input id="noConsent" name="noConsent" type="checkbox" required class="h-4 w-4 text-cyan-600 bg-gray-700 border-gray-600 rounded focus:ring-cyan-500 mt-1 flex-shrink-0"><label for="noConsent" class="ml-3 block text-sm text-gray-300">Manifiesto que el material fue distribuido <span class="font-bold text-white">sin consentimiento</span>.</label></div>
+                        <div class="flex items-start"><input id="intimateContent" name="intimateContent" type="checkbox" required class="h-4 w-4 text-cyan-600 bg-gray-700 border-gray-600 rounded focus:ring-cyan-500 mt-1 flex-shrink-0"><label for="intimateContent" class="ml-3 block text-sm text-gray-300">Confirmo que el material es de <span class="font-bold text-white">naturaleza íntima</span>.</label></div>
+                        <div class="flex items-start"><input id="over18" name="over18" type="checkbox" required class="h-4 w-4 text-cyan-600 bg-gray-700 border-gray-600 rounded focus:ring-cyan-500 mt-1 flex-shrink-0"><label for="over18" class="ml-3 block text-sm text-gray-300">Declaro que la persona era <span class="font-bold text-white">mayor de 18 años</span> cuando se creó.</label></div>
                     </div>
-                    <div class="flex items-start">
-                        <input id="goodFaith" name="goodFaith" type="checkbox" required class="h-4 w-4 text-blue-700 focus:ring-blue-500 border-gray-300 rounded mt-1 flex-shrink-0">
-                        <label for="goodFaith" class="ml-3 block text-sm text-gray-900">
-                            <span class="font-bold">Declaro de buena fe</span> que soy la persona afectada o estoy autorizada para actuar en su nombre.
-                        </label>
-                    </div>
-                    <div class="flex items-start">
-                        <input id="noConsent" name="noConsent" type="checkbox" required class="h-4 w-4 text-blue-700 focus:ring-blue-500 border-gray-300 rounded mt-1 flex-shrink-0">
-                        <label for="noConsent" class="ml-3 block text-sm text-gray-900">
-                            Manifiesto que el material fue distribuido <span class="font-bold">sin consentimiento</span>.
-                        </label>
-                    </div>
-                    <div class="flex items-start">
-                        <input id="intimateContent" name="intimateContent" type="checkbox" required class="h-4 w-4 text-blue-700 focus:ring-blue-500 border-gray-300 rounded mt-1 flex-shrink-0">
-                        <label for="intimateContent" class="ml-3 block text-sm text-gray-900">
-                            Confirmo que el material es de <span class="font-bold">naturaleza íntima</span>.
-                        </label>
-                    </div>
-                    <div class="flex items-start">
-                        <input id="over18" name="over18" type="checkbox" required class="h-4 w-4 text-blue-700 focus:ring-blue-500 border-gray-300 rounded mt-1 flex-shrink-0">
-                        <label for="over18" class="ml-3 block text-sm text-gray-900">
-                            Declaro que la persona en el contenido era <span class="font-bold">mayor de 18 años</span> cuando se creó.
-                        </label>
-                    </div>
-                </div>
-                <!-- Fin de la Sección de Declaraciones -->
 
-                <div>
-                    <button type="submit" id="submitButton" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-semibold rounded-lg text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 transform hover:scale-105">
-                        <span id="buttonText">Enviar Solicitud</span>
-                        <span id="buttonSpinner" class="hidden h-5 w-5">
-                            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
-                        </span>
-                    </button>
-                </div>
-            </form>
-            
-            <div id="resultMessage" class="text-center text-sm pt-4 font-medium"></div>
-        </main>
+                    <button type="submit" id="submitButton" class="group relative w-full flex justify-center py-3 px-4 border-2 border-cyan-400 text-sm font-semibold rounded-lg text-cyan-400 bg-transparent hover:bg-cyan-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-cyan-500 transition-all duration-300 neon-glow-hover"><span id="buttonText">Enviar Solicitud</span><span id="buttonSpinner" class="hidden h-5 w-5"><svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg></span></button>
+                </form>
+                <div id="resultMessage" class="text-center text-sm pt-4 font-medium"></div>
+            </main>
+        </section>
 
-        <section id="privacy-notice" class="w-full max-w-xl px-8 text-xs text-gray-600 scroll-mt-20 my-8">
-            <h2 class="font-bold text-sm mb-2 text-gray-800">Aviso de Privacidad Integral</h2>
-            <p class="mb-2">De conformidad con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, <strong>GestionPrivacidad</strong>, es el responsable del uso y protección de sus datos personales.</p>
-            <p>Los datos recabados serán utilizados únicamente para identificarle, contactarle y dar seguimiento a su solicitud. No serán compartidos con terceros, salvo por requerimiento de una autoridad competente. Usted puede ejercer sus derechos de Acceso, Rectificación, Cancelación u Oposición (ARCO) en cualquier momento a través de nuestros canales de contacto. Cualquier cambio a este aviso será publicado en este sitio.</p>
+        <section id="privacy-notice" class="w-full max-w-4xl px-8 text-xs text-gray-400 scroll-mt-24 my-8">
+            <h2 class="font-bold text-sm mb-2 text-white">Aviso de Privacidad Integral</h2>
+            <p class="mb-2"><strong>GestionPrivacidad</strong> es el responsable del uso y protección de sus datos personales. Serán utilizados únicamente para dar seguimiento a su solicitud y no serán compartidos, salvo por requerimiento de una autoridad. Puede ejercer sus derechos ARCO en cualquier momento. Cualquier cambio será publicado en este sitio.</p>
             <p class="mt-2"><strong>Última actualización:</strong> 20 de septiembre de 2025.</p>
         </section>
 
-        <!-- Pie de página actualizado -->
         <footer class="text-center p-4 mt-4 text-gray-500 text-sm">
             <p>&copy; 2025 GestionPrivacidad. Todos los derechos reservados.</p>
         </footer>
     </div>
+    
+    <!-- Modal de Alerta para Menores -->
+    <div id="minorAlertModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-gray-800 rounded-lg shadow-2xl max-w-md w-full p-8 text-center relative border border-red-500/50">
+            <button id="closeModalButton" class="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+            <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-900/50 border border-red-500/30 mb-4">
+                <svg class="h-10 w-10 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.007H12v-.007z" /></svg>
+            </div>
+            <h3 class="text-2xl font-tech text-white uppercase">Atención Importante</h3>
+            <p class="mt-4 text-gray-400">Nuestro servicio está destinado exclusivamente a casos que involucran a adultos.</p>
+            <p class="mt-2 font-semibold text-white">Si el contenido involucra a un menor de 18 años, detén esta solicitud.</p>
+            <p class="mt-4 text-gray-400">Por favor, dirígete a las <span class="font-bold text-red-400">autoridades competentes</span> de tu país. Ellos son los indicados para manejar esta grave situación.</p>
+            <button id="understandButton" class="mt-6 w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">Entendido</button>
+        </div>
+    </div>
+
     <script>
         const contactForm = document.getElementById('contactForm');
         const submitButton = document.getElementById('submitButton');
@@ -149,42 +155,65 @@
         const buttonSpinner = document.getElementById('buttonSpinner');
         const resultMessage = document.getElementById('resultMessage');
         const urlsTextarea = document.getElementById('urls');
+        const over18Checkbox = document.getElementById('over18');
+        const minorAlertModal = document.getElementById('minorAlertModal');
 
         contactForm.addEventListener('submit', async (event) => {
             event.preventDefault();
 
             resultMessage.textContent = '';
-            resultMessage.classList.remove('text-green-600', 'text-red-600');
+            resultMessage.classList.remove('text-green-400', 'text-red-400');
+
+            // Validar campos de texto requeridos
+            const requiredInputs = contactForm.querySelectorAll('input[required], textarea[required]');
+            let firstInvalidInput = null;
+
+            for (const input of requiredInputs) {
+                if (!input.value.trim()) {
+                    resultMessage.textContent = 'Por favor, completa todos los campos requeridos.';
+                    resultMessage.classList.add('text-red-400');
+                    if (!firstInvalidInput) {
+                        firstInvalidInput = input;
+                    }
+                }
+            }
+
+            if (firstInvalidInput) {
+                firstInvalidInput.focus();
+                return;
+            }
 
             const urls = urlsTextarea.value.split('\n').filter(url => url.trim() !== '');
             if (urls.length > 15) {
                 resultMessage.textContent = 'Por favor, no introduzcas más de 15 URLs.';
-                resultMessage.classList.add('text-red-600');
+                resultMessage.classList.add('text-red-400');
                 return;
             }
 
-            const requiredCheckboxes = contactForm.querySelectorAll('input[type="checkbox"][required]');
-            let allChecked = true;
-            for (const checkbox of requiredCheckboxes) {
+            // Chequeo especial para la casilla de mayoría de edad
+            if (!over18Checkbox.checked) {
+                minorAlertModal.classList.remove('hidden');
+                return;
+            }
+            
+            // Validación para las demás casillas
+            const otherCheckboxes = contactForm.querySelectorAll('input[type="checkbox"][required]:not(#over18)');
+            for (const checkbox of otherCheckboxes) {
                 if (!checkbox.checked) {
                     let errorMessage = 'Debe aceptar todas las declaraciones para poder enviar su solicitud.';
-                    if (checkbox.id === 'privacyPolicy') errorMessage = 'Por favor, acepta el aviso de privacidad para continuar.';
-                    if (checkbox.id === 'over18') errorMessage = 'Error: Nuestro servicio solo gestiona contenido de adultos. Si el material involucra a un menor, detén esta solicitud y repórtalo de inmediato a las autoridades.';
-                    
+                    if (checkbox.id === 'privacyPolicy') {
+                        errorMessage = 'Por favor, acepta el aviso de privacidad para continuar.';
+                    }
                     resultMessage.textContent = errorMessage;
-                    resultMessage.classList.add('text-red-600');
-                    allChecked = false;
-                    break;
+                    resultMessage.classList.add('text-red-400');
+                    return; 
                 }
             }
-
-            if (!allChecked) return;
             
             submitButton.disabled = true;
             buttonText.classList.add('hidden');
             buttonSpinner.classList.remove('hidden');
             buttonSpinner.classList.add('flex', 'justify-center');
-
 
             const formData = new FormData(contactForm);
             const data = Object.fromEntries(formData.entries());
@@ -198,14 +227,14 @@
                 const result = await response.json();
                 if (response.ok) {
                     resultMessage.textContent = '¡Gracias! Tu solicitud ha sido enviada. Nos pondremos en contacto al iniciar operaciones.';
-                    resultMessage.classList.add('text-green-600');
+                    resultMessage.classList.add('text-green-400');
                     contactForm.reset();
                 } else {
                     throw new Error(result.error || 'Algo salió mal.');
                 }
             } catch (error) {
                 resultMessage.textContent = `Error: ${error.message}`;
-                resultMessage.classList.add('text-red-600');
+                resultMessage.classList.add('text-red-400');
             } finally {
                 submitButton.disabled = false;
                 buttonText.classList.remove('hidden');
@@ -213,10 +242,25 @@
                 buttonSpinner.classList.remove('flex', 'justify-center');
             }
         });
+
+        // Lógica para cerrar el modal
+        const closeModalButton = document.getElementById('closeModalButton');
+        const understandButton = document.getElementById('understandButton');
+
+        function hideModal() {
+            minorAlertModal.classList.add('hidden');
+        }
+
+        closeModalButton.addEventListener('click', hideModal);
+        understandButton.addEventListener('click', hideModal);
+        minorAlertModal.addEventListener('click', (event) => {
+            if (event.target === minorAlertModal) {
+                hideModal();
+            }
+        });
     </script>
 
 </body>
 </html>
-
 
 
