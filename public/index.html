@@ -207,14 +207,18 @@
             }
             
             const otherCheckboxes = contactForm.querySelectorAll('input[type="checkbox"][required]:not(#over18)');
+            let allOthersChecked = true;
             for (const checkbox of otherCheckboxes) {
                 if (!checkbox.checked) {
-                    let errorMessage = 'Debe aceptar todas las declaraciones para poder enviar su solicitud.';
-                    if (checkbox.id === 'privacyPolicy') errorMessage = 'Por favor, acepta el aviso de privacidad para continuar.';
-                    resultMessage.textContent = errorMessage;
-                    resultMessage.classList.add('text-red-400');
-                    return; 
+                    allOthersChecked = false;
+                    break;
                 }
+            }
+
+            if (!allOthersChecked) {
+                resultMessage.textContent = 'No podemos brindarle nuestros servicios sin que acepte todas las declaraciones requeridas.';
+                resultMessage.classList.add('text-red-400');
+                return;
             }
             
             submitButton.disabled = true;
@@ -273,5 +277,3 @@
 
 </body>
 </html>
-
-
