@@ -18,12 +18,12 @@ export async function onRequest(context) {
       });
     }
 
-    // --- IMPORTANTE ---
-    // Reemplaza "CASES_KV" con el nombre que le diste a tu base de datos KV en la configuración de Cloudflare.
-    const CASES_KV = context.env.CONTACT_FORM;
-
-    // Buscar el folio en la base de datos KV
-    const caseDataString = await CASES_KV.get(caseId.toUpperCase());
+    // Usar la base de datos KV enlazada con el nombre "CONTACT_FORM"
+    const CONTACT_FORM = context.env.CONTACT_FORM;
+    const caseDataString = await CONTACT_FORM.get(caseId.toUpperCase());
+    
+    // Log para depuración (puedes verlo en los logs de Cloudflare)
+    console.log(`Buscando folio: ${caseId.toUpperCase()}. Encontrado: ${caseDataString !== null}`);
 
     if (caseDataString === null) {
       // Si no se encuentra el folio, devolver un error 404
@@ -42,6 +42,7 @@ export async function onRequest(context) {
 
   } catch (error) {
     // Manejar cualquier otro error inesperado
+    console.error("Error en /api/status:", error);
     return new Response(JSON.stringify({ error: 'Error interno del servidor' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
