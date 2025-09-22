@@ -1,0 +1,51 @@
+// functions/api/status.js
+
+export async function onRequest(context) {
+  // Solo se aceptan solicitudes POST para mayor seguridad
+  if (context.request.method !== 'POST') {
+    return new Response('Método no permitido', { status: 405 });
+  }
+
+  try {
+    const body = await context.request.json();
+    const caseId = body.caseId;
+
+    // Validar que se haya enviado un folio
+    if (!caseId) {
+      return new Response(JSON.stringify({ error: 'Número de folio no proporcionado' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // --- IMPORTANTE ---
+    // Reemplaza "CASES_KV" con el nombre que le diste a tu base de datos KV en la configuración de Cloudflare.
+    const CASES_KV = context.env.CONTACT_FORM;
+
+    // Buscar el folio en la base de datos KV
+    const caseDataString = await CASES_KV.get(caseId.toUpperCase());
+
+    if (caseDataString === null) {
+      // Si no se encuentra el folio, devolver un error 404
+      return new Response(JSON.stringify({ error: 'Folio no encontrado' }), {
+        status: 404,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Si se encuentra, devolver los datos del caso
+    const caseData = JSON.parse(caseDataString);
+    return new Response(JSON.stringify(caseData), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+  } catch (error) {
+    // Manejar cualquier otro error inesperado
+    return new Response(JSON.stringify({ error: 'Error interno del servidor' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+}
+

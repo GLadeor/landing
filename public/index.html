@@ -7,12 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
-    <!-- Se mantiene solo Inter para una apariencia unificada y cálida -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            /* Fondo oscuro con patrón de rejilla digital */
             background-color: #111827; /* Tailwind's gray-900 */
             color: #d1d5db; /* gray-300 */
             background-image: 
@@ -23,7 +21,6 @@
         html {
             scroll-behavior: smooth;
         }
-        /* Efecto de brillo para elementos interactivos */
         .neon-glow-hover:hover {
             box-shadow: 0 0 5px #06b6d4, 0 0 10px #06b6d4, 0 0 15px #06b6d4;
         }
@@ -39,7 +36,11 @@
                     <p class="text-sm font-semibold text-cyan-400 tracking-wider">We protect you from the nameless</p>
                 </div>
             </div>
-            <a href="#formulario" class="bg-transparent border-2 border-cyan-400 text-cyan-400 font-bold py-2 px-4 rounded-lg hover:bg-cyan-400 hover:text-gray-900 transition-colors duration-300 neon-glow-hover">Iniciar Solicitud</a>
+            <!-- Botones de navegación actualizados -->
+            <div class="flex items-center gap-4">
+                <a href="./seguimiento.html" class="text-gray-300 hover:text-cyan-400 font-bold py-2 px-4 rounded-lg transition-colors duration-300">Seguimiento</a>
+                <a href="#formulario" class="bg-transparent border-2 border-cyan-400 text-cyan-400 font-bold py-2 px-4 rounded-lg hover:bg-cyan-400 hover:text-gray-900 transition-colors duration-300 neon-glow-hover">Iniciar Solicitud</a>
+            </div>
         </div>
     </header>
 
@@ -70,7 +71,6 @@
             </div>
         </section>
 
-        <!-- SECCIÓN DE PROCESO -->
         <section class="w-full max-w-4xl mb-16">
             <h3 class="text-3xl font-bold text-center text-white mb-12 tracking-tight">Nuestro Proceso Simplificado</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
@@ -98,7 +98,6 @@
             </div>
         </section>
 
-        <!-- SECCIÓN DEL FORMULARIO -->
         <section id="formulario" class="w-full max-w-xl scroll-mt-24">
             <h3 class="text-3xl font-bold text-center text-white mb-8 tracking-tight">Inicia tu Solicitud Confidencial</h3>
             <div class="w-full bg-cyan-900/50 border-l-4 border-cyan-400 text-cyan-200 p-6 rounded-r-lg shadow-md mb-8">
@@ -147,7 +146,6 @@
         </footer>
     </div>
     
-    <!-- Modal de Alerta para Menores -->
     <div id="minorAlertModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
         <div class="bg-gray-800 rounded-lg shadow-2xl max-w-md w-full p-8 text-center relative border border-red-500/50">
             <button id="closeModalButton" class="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors">
@@ -180,7 +178,6 @@
             resultMessage.textContent = '';
             resultMessage.classList.remove('text-green-400', 'text-red-400');
 
-            // Validar campos de texto requeridos
             const requiredInputs = contactForm.querySelectorAll('input[required], textarea[required]');
             let firstInvalidInput = null;
 
@@ -188,9 +185,7 @@
                 if (!input.value.trim()) {
                     resultMessage.textContent = 'Por favor, completa todos los campos requeridos.';
                     resultMessage.classList.add('text-red-400');
-                    if (!firstInvalidInput) {
-                        firstInvalidInput = input;
-                    }
+                    if (!firstInvalidInput) firstInvalidInput = input;
                 }
             }
 
@@ -206,20 +201,16 @@
                 return;
             }
 
-            // Chequeo especial para la casilla de mayoría de edad
             if (!over18Checkbox.checked) {
                 minorAlertModal.classList.remove('hidden');
                 return;
             }
             
-            // Validación para las demás casillas
             const otherCheckboxes = contactForm.querySelectorAll('input[type="checkbox"][required]:not(#over18)');
             for (const checkbox of otherCheckboxes) {
                 if (!checkbox.checked) {
                     let errorMessage = 'Debe aceptar todas las declaraciones para poder enviar su solicitud.';
-                    if (checkbox.id === 'privacyPolicy') {
-                        errorMessage = 'Por favor, acepta el aviso de privacidad para continuar.';
-                    }
+                    if (checkbox.id === 'privacyPolicy') errorMessage = 'Por favor, acepta el aviso de privacidad para continuar.';
                     resultMessage.textContent = errorMessage;
                     resultMessage.classList.add('text-red-400');
                     return; 
@@ -241,12 +232,17 @@
                     body: JSON.stringify(data),
                 });
                 const result = await response.json();
-                if (response.ok) {
-                    resultMessage.textContent = '¡Gracias! Tu solicitud ha sido enviada. Nos pondremos en contacto al iniciar operaciones.';
-                    resultMessage.classList.add('text-green-400');
+                if (response.ok && result.folio) {
+                    resultMessage.innerHTML = `
+                        <div class="text-green-400 text-left p-4 bg-gray-900 rounded-lg border border-green-500/30">
+                            <p class="font-bold">¡Gracias! Tu solicitud ha sido enviada con éxito.</p>
+                            <p class="mt-2">Tu número de folio es: <span class="font-bold text-white bg-gray-700 px-2 py-1 rounded">${result.folio}</span></p>
+                            <p class="mt-2">Guárdalo para consultar el estado de tu caso en nuestra página de <a href="./seguimiento.html" class="underline hover:text-white">Seguimiento</a>.</p>
+                        </div>
+                    `;
                     contactForm.reset();
                 } else {
-                    throw new Error(result.error || 'Algo salió mal.');
+                    throw new Error(result.error || 'Algo salió mal. No se pudo generar el folio.');
                 }
             } catch (error) {
                 resultMessage.textContent = `Error: ${error.message}`;
@@ -259,7 +255,6 @@
             }
         });
 
-        // Lógica para cerrar el modal
         const closeModalButton = document.getElementById('closeModalButton');
         const understandButton = document.getElementById('understandButton');
 
@@ -278,4 +273,5 @@
 
 </body>
 </html>
+
 
