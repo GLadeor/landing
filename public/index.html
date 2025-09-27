@@ -3,109 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Próximamente - GestionPrivacidad</title>
+    <title>GestionPrivacidad - Expertos en Eliminación de Huella Digital</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827; /* Tailwind's gray-900 */
-            color: #d1d5db; /* gray-300 */
-            background-image: 
-                linear-gradient(rgba(19, 182, 219, 0.1) 1px, transparent 1px),
-                linear-gradient(to right, rgba(19, 182, 219, 0.1) 1px, transparent 1px);
-            background-size: 3rem 3rem;
+            background-color: #f7f7f7; /* Off-white background */
+            color: #111827; /* gray-900 */
         }
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Definiendo colores personalizados */
+        .bg-bold-yellow { background-color: #facc15; } /* yellow-400 */
+        .hover\:bg-bold-yellow-dark:hover { background-color: #eab308; } /* yellow-500 */
+        
+        /* Nuevo tono de verde: Verde Bosque */
+        .bg-forest-green { background-color: #22543d; } /* Dark Green */
+        .hover\:bg-forest-green-dark:hover { background-color: #1c4532; } /* Darker Green */
+        .text-forest-green { color: #22543d; }
+        .border-forest-green { border-color: #22543d; }
+        .hover\:border-forest-green:hover { border-color: #22543d; }
+        .focus\:ring-forest-green:focus { --tw-ring-color: #22543d; }
     </style>
 </head>
 <body class="antialiased">
 
-    <header class="w-full bg-gray-900/50 backdrop-blur-sm border-b border-cyan-500/20 text-white p-6 sticky top-0 z-40">
-        <div class="max-w-4xl mx-auto flex items-center justify-center">
+    <!-- Header -->
+    <header class="w-full bg-white/80 backdrop-blur-sm border-b border-gray-200 p-6 sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
             <div>
-                <h1 class="text-2xl font-bold text-white tracking-tight text-center">GestionPrivacidad</h1>
-                <p class="text-sm font-semibold text-cyan-400 tracking-wider text-center">We protect you from the nameless</p>
+                <h1 class="text-2xl font-black text-forest-green tracking-tight">GestionPrivacidad</h1>
             </div>
+            <a href="#contacto" class="hidden sm:inline-block bg-forest-green text-white font-bold py-2 px-4 rounded-lg hover:bg-forest-green-dark transition-colors duration-300">Solicitar Consulta</a>
         </div>
     </header>
 
-    <div class="flex flex-col items-center justify-center min-h-screen text-center py-10 px-4 -mt-24">
+    <main class="max-w-6xl mx-auto">
         
-        <main class="w-full max-w-3xl">
-            <h2 class="text-4xl font-extrabold text-white sm:text-6xl tracking-tight leading-tight">Estamos Preparando Algo Grande</h2>
-            <p class="mt-6 text-lg text-gray-400 max-w-2xl mx-auto">
-                Nuestro nuevo sitio web estará disponible muy pronto. Estamos trabajando para brindarte la mejor herramienta para proteger tu privacidad y control digital.
-            </p>
+        <!-- Hero Section -->
+        <section class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center py-24 px-6">
+            <div class="md:pr-8">
+                <p class="text-lg font-semibold text-gray-600 tracking-wider uppercase">We protect you from the nameless</p>
+                <h2 class="text-5xl font-black text-forest-green sm:text-7xl tracking-tighter leading-tight mt-2">Tu Privacidad,<br>Nuestra Misión.</h2>
+            </div>
+            <div class="text-lg text-gray-700">
+                <p>
+                    Gestionamos la eliminación de contenido no deseado en internet que afecta tu vida personal y profesional. Conectamos con plataformas de todo el mundo para gestionar la eliminación de tu huella digital de forma confidencial y efectiva.
+                </p>
+                <a href="#servicios" class="mt-8 inline-block font-bold border-b-2 border-bold-yellow hover:border-forest-green transition-colors">Descubre nuestros servicios</a>
+            </div>
+        </section>
 
-            <!-- Countdown Timer -->
-            <div id="countdown" class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 max-w-2xl mx-auto my-12">
-                <div class="bg-gray-800/50 border border-cyan-500/20 p-6 rounded-xl backdrop-blur-sm">
-                    <div id="days" class="text-5xl sm:text-6xl font-bold text-cyan-400">00</div>
-                    <div class="text-sm uppercase text-gray-400 mt-2">Días</div>
+        <!-- Services Section -->
+        <section id="servicios" class="w-full py-24 px-6 bg-white border-y border-gray-200 scroll-mt-24">
+            <div class="text-left mb-16">
+                <h3 class="text-4xl font-black text-forest-green sm:text-5xl tracking-tighter">Nuestras Áreas de Especialización</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1: Intimate Content -->
+                <div class="border border-gray-200 p-8 rounded-lg">
+                    <div class="bg-bold-yellow text-gray-900 rounded-full h-12 w-12 flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.007H12v-.007z" /></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-forest-green">Contenido Íntimo</h4>
+                    <p class="text-gray-600 mt-2">Actuamos con rapidez y máxima discreción para gestionar la eliminación de fotos y videos privados compartidos sin tu consentimiento.</p>
                 </div>
-                <div class="bg-gray-800/50 border border-cyan-500/20 p-6 rounded-xl backdrop-blur-sm">
-                    <div id="hours" class="text-5xl sm:text-6xl font-bold text-cyan-400">00</div>
-                    <div class="text-sm uppercase text-gray-400 mt-2">Horas</div>
+                <!-- Service 2: Harassment -->
+                <div class="border border-gray-200 p-8 rounded-lg">
+                     <div class="bg-bold-yellow text-gray-900 rounded-full h-12 w-12 flex items-center justify-center mb-6">
+                         <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-6.375 3h12.75c.621 0 1.125-.504 1.125-1.125V11.25c0-.621-.504-1.125-1.125-1.125H4.875c-.621 0-1.125.504-1.125 1.125v2.25c0 .621.504 1.125 1.125 1.125z" /></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-forest-green">Acoso y Difamación</h4>
+                    <p class="text-gray-600 mt-2">Combatimos el ciberacoso y la desinformación, trabajando para gestionar la eliminación de publicaciones que dañan tu imagen.</p>
                 </div>
-                <div class="bg-gray-800/50 border border-cyan-500/20 p-6 rounded-xl backdrop-blur-sm">
-                    <div id="minutes" class="text-5xl sm:text-6xl font-bold text-cyan-400">00</div>
-                    <div class="text-sm uppercase text-gray-400 mt-2">Minutos</div>
-                </div>
-                <div class="bg-gray-800/50 border border-cyan-500/20 p-6 rounded-xl backdrop-blur-sm">
-                    <div id="seconds" class="text-5xl sm:text-6xl font-bold text-cyan-400">00</div>
-                    <div class="text-sm uppercase text-gray-400 mt-2">Segundos</div>
+                <!-- Service 3: Copyright -->
+                <div class="border border-gray-200 p-8 rounded-lg">
+                    <div class="bg-bold-yellow text-gray-900 rounded-full h-12 w-12 flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-forest-green">Derechos de Autor</h4>
+                    <p class="text-gray-600 mt-2">Protegemos tu trabajo creativo. Gestionamos la eliminación de copias no autorizadas de tu contenido.</p>
                 </div>
             </div>
+        </section>
 
-            <p class="text-gray-500">Gracias por tu paciencia.</p>
+        <!-- Contact Form Section -->
+        <section id="contacto" class="w-full py-24 px-6 scroll-mt-24">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                <div>
+                    <h3 class="text-4xl font-black text-forest-green sm:text-5xl tracking-tighter">Inicia una Consulta Confidencial</h3>
+                    <p class="mt-4 text-lg text-gray-600">El envío de tu información es para un análisis inicial de tu caso, <span class="font-bold">sin costo ni compromiso</span>. Los servicios de eliminación conllevan un costo que te será comunicado después del análisis.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <input id="name" name="name" type="text" required class="bg-gray-100 border-2 border-gray-200 text-gray-900 placeholder-gray-500 rounded-lg focus:ring-bold-yellow focus:border-bold-yellow block w-full p-3" placeholder="Nombre Completo">
+                            <input id="email" name="email" type="email" autocomplete="email" required class="bg-gray-100 border-2 border-gray-200 text-gray-900 placeholder-gray-500 rounded-lg focus:ring-bold-yellow focus:border-bold-yellow block w-full p-3" placeholder="Correo Electrónico">
+                        </div>
+                        <div>
+                            <select id="service" name="service" required class="bg-gray-100 border-2 border-gray-200 text-gray-900 rounded-lg focus:ring-bold-yellow focus:border-bold-yellow block w-full p-3">
+                                <option value="" disabled selected>Selecciona el tipo de servicio...</option>
+                                <option value="intimo">Eliminación de Contenido Íntimo</option>
+                                <option value="acoso">Acoso y Difamación</option>
+                                <option value="copyright">Derechos de Autor</option>
+                                <option value="otro">Otro tipo de consulta</option>
+                            </select>
+                        </div>
+                        <div id="adultContentCheckContainer" class="hidden pt-2">
+                            <div class="flex items-start p-4 bg-yellow-50 border-2 border-yellow-200 rounded-lg">
+                                <input id="adultContentCheck" name="adultContentCheck" type="checkbox" class="h-4 w-4 text-forest-green border-gray-300 rounded focus:ring-forest-green mt-1 flex-shrink-0">
+                                <label for="adultContentCheck" class="ml-3 block text-sm text-yellow-900"><span class="font-bold">Declaración Requerida:</span> Confirmo que el material a reportar involucra únicamente a personas mayores de 18 años.</label>
+                            </div>
+                        </div>
+                        <div>
+                            <textarea id="message" name="message" rows="5" required class="bg-gray-100 border-2 border-gray-200 text-gray-900 placeholder-gray-500 rounded-lg focus:ring-bold-yellow focus:border-bold-yellow block w-full p-3" placeholder="Describe brevemente tu situación..."></textarea>
+                        </div>
+                        <div class="pt-4 border-t border-gray-200 space-y-4">
+                            <div class="flex items-start">
+                                <input id="ownershipCheck" name="ownershipCheck" type="checkbox" required class="h-4 w-4 text-forest-green border-gray-300 rounded focus:ring-forest-green mt-1 flex-shrink-0">
+                                <label for="ownershipCheck" class="ml-3 block text-sm text-gray-700"><span class="font-bold text-forest-green">Declaro de buena fe</span> que soy la persona afectada o autorizada.</label>
+                            </div>
+                             <div class="flex items-start">
+                                <input id="privacyPolicy" name="privacyPolicy" type="checkbox" required class="h-4 w-4 text-forest-green border-gray-300 rounded focus:ring-forest-green mt-1 flex-shrink-0">
+                                <label for="privacyPolicy" class="ml-3 block text-sm text-gray-700">He leído y acepto el <a href="#aviso-privacidad" class="font-bold text-forest-green hover:underline">Aviso de Privacidad</a>.</label>
+                            </div>
+                        </div>
+                        <button type="submit" id="submitButton" class="w-full flex justify-center py-3 px-4 text-lg font-bold rounded-lg text-gray-900 bg-bold-yellow hover:bg-bold-yellow-dark transition-colors">
+                            <span id="buttonText">Enviar para Análisis Gratuito</span>
+                        </button>
+                    </form>
+                    <div id="resultMessage" class="text-center text-sm pt-4 font-medium"></div>
+                </div>
+            </div>
+        </section>
 
-        </main>
-
-        <footer class="absolute bottom-0 text-center p-4 mt-16 text-gray-500 text-sm">
-            <p>&copy; 2025 GestionPrivacidad. Todos los derechos reservados.</p>
+        <!-- Privacy Notice & Footer Section -->
+        <footer id="aviso-privacidad" class="w-full bg-white border-t border-gray-200 py-16 px-6 scroll-mt-24">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="md:col-span-1">
+                    <h3 class="text-2xl font-black text-forest-green">Aviso de Privacidad</h3>
+                </div>
+                <div class="md:col-span-2 text-gray-600 text-sm space-y-4">
+                    <p><strong>Responsable:</strong> GestionPrivacidad.</p>
+                    <p><strong>Datos Recabados:</strong> Nombre completo, correo electrónico, tipo de servicio seleccionado y la descripción de su caso.</p>
+                    <p><strong>Finalidades:</strong> Los datos serán utilizados para identificarle, contactarle, analizar la viabilidad de su caso y proveerle información sobre nuestros servicios.</p>
+                    <p><strong>Derechos ARCO:</strong> Puede ejercer sus derechos de Acceso, Rectificación, Cancelación y Oposición a través de nuestros canales de contacto.</p>
+                    <p class="mt-4"><strong>Última actualización:</strong> 26 de septiembre de 2025.</p>
+                </div>
+            </div>
+             <div class="mt-16 border-t border-gray-200 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 GestionPrivacidad | Monterrey, Nuevo León, México.</p>
+            </div>
         </footer>
+    </main>
+    
+    <!-- Modal de Alerta para Menores -->
+    <div id="minorAlertModal" class="fixed inset-0 bg-black/75 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white rounded-lg shadow-2xl max-w-md w-full p-8 text-center relative">
+            <button id="closeModalButton" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+            <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-4">
+                <svg class="h-10 w-10 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.007H12v-.007z" /></svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900">Atención Importante</h3>
+            <p class="mt-4 text-gray-600">Nuestro servicio está destinado exclusivamente a casos que involucran a adultos.</p>
+            <p class="mt-2 font-semibold text-gray-900">Si el contenido involucra a un menor, detén esta solicitud y contacta a las <span class="font-bold text-red-600">autoridades competentes</span>.</p>
+            <button id="understandButton" class="mt-6 w-full bg-forest-green hover:bg-forest-green-dark text-white font-bold py-2 px-4 rounded-lg">Entendido</button>
+        </div>
     </div>
 
     <script>
-        // --- COUNTDOWN SCRIPT ---
-        
-        // Establecer la fecha de finalización para que sea en 5 días a partir de ahora
-        const fiveDaysFromNow = new Date();
-        fiveDaysFromNow.setDate(fiveDaysFromNow.getDate() + 5);
-        const countdownDate = fiveDaysFromNow.getTime();
+        const contactForm = document.getElementById('contactForm');
+        const submitButton = document.getElementById('submitButton');
+        const resultMessage = document.getElementById('resultMessage');
+        const privacyPolicyCheckbox = document.getElementById('privacyPolicy');
+        const serviceSelect = document.getElementById('service');
+        const adultContentCheckContainer = document.getElementById('adultContentCheckContainer');
+        const adultContentCheck = document.getElementById('adultContentCheck');
+        const ownershipCheck = document.getElementById('ownershipCheck');
+        const minorAlertModal = document.getElementById('minorAlertModal');
+        const closeModalButton = document.getElementById('closeModalButton');
+        const understandButton = document.getElementById('understandButton');
 
-        const daysEl = document.getElementById('days');
-        const hoursEl = document.getElementById('hours');
-        const minutesEl = document.getElementById('minutes');
-        const secondsEl = document.getElementById('seconds');
-        const countdownEl = document.getElementById('countdown');
+        serviceSelect.addEventListener('change', () => {
+            if (serviceSelect.value === 'intimo') {
+                adultContentCheckContainer.classList.remove('hidden');
+            } else {
+                adultContentCheckContainer.classList.add('hidden');
+                adultContentCheck.checked = false;
+            }
+        });
 
-        const updateCountdown = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
+        contactForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            
+            resultMessage.textContent = '';
+            resultMessage.classList.remove('text-red-600', 'text-green-600');
 
-            if (distance < 0) {
-                clearInterval(updateCountdown);
-                countdownEl.innerHTML = "<h3 class='col-span-full text-3xl font-bold text-green-400'>¡Hemos Lanzado!</h3>";
+            if (!privacyPolicyCheckbox.checked) {
+                resultMessage.textContent = 'Por favor, acepta el Aviso de Privacidad para continuar.';
+                resultMessage.classList.add('text-red-600');
+                return;
+            }
+            
+            if (!ownershipCheck.checked) {
+                resultMessage.textContent = 'Debe declarar que es la persona afectada o está autorizada para continuar.';
+                resultMessage.classList.add('text-red-600');
                 return;
             }
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            daysEl.innerText = days < 10 ? '0' + days : days;
-            hoursEl.innerText = hours < 10 ? '0' + hours : hours;
-            minutesEl.innerText = minutes < 10 ? '0' + minutes : minutes;
-            secondsEl.innerText = seconds < 10 ? '0' + seconds : seconds;
+            if (serviceSelect.value === 'intimo' && !adultContentCheck.checked) {
+                minorAlertModal.classList.remove('hidden');
+                return;
+            }
 
-        }, 1000);
+            // --- SIMULACIÓN DE ENVÍO ---
+            submitButton.disabled = true;
+            resultMessage.classList.add('text-green-600');
+            resultMessage.textContent = 'Gracias por tu mensaje. Nos pondremos en contacto contigo a la brevedad.';
+
+            contactForm.reset();
+            
+            setTimeout(() => {
+                submitButton.disabled = false;
+                resultMessage.textContent = '';
+                adultContentCheckContainer.classList.add('hidden');
+            }, 5000);
+        });
+
+        // Logic for closing the modal
+        function hideModal() {
+            minorAlertModal.classList.add('hidden');
+        }
+
+        closeModalButton.addEventListener('click', hideModal);
+        understandButton.addEventListener('click', hideModal);
+        minorAlertModal.addEventListener('click', (event) => {
+            if (event.target === minorAlertModal) {
+                hideModal();
+            }
+        });
     </script>
 
 </body>
 </html>
-
 
