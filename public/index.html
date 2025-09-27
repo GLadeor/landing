@@ -99,7 +99,7 @@
                     <p class="mt-4 text-lg text-gray-600">El envío de tu información es para un análisis inicial de tu caso, <span class="font-bold">sin costo ni compromiso</span>. Los servicios de eliminación conllevan un costo que te será comunicado después del análisis.</p>
                 </div>
                 <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-                    <form id="contactForm" class="space-y-6">
+                    <form id="contactForm" class="space-y-6" novalidate>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <input id="name" name="name" type="text" required class="bg-gray-100 border-2 border-gray-200 text-gray-900 placeholder-gray-500 rounded-lg focus:ring-bold-yellow focus:border-bold-yellow block w-full p-3" placeholder="Nombre Completo">
                             <input id="email" name="email" type="email" autocomplete="email" required class="bg-gray-100 border-2 border-gray-200 text-gray-900 placeholder-gray-500 rounded-lg focus:ring-bold-yellow focus:border-bold-yellow block w-full p-3" placeholder="Correo Electrónico">
@@ -180,6 +180,7 @@
     <script>
         const contactForm = document.getElementById('contactForm');
         const submitButton = document.getElementById('submitButton');
+        const buttonText = document.getElementById('buttonText');
         const resultMessage = document.getElementById('resultMessage');
         const privacyPolicyCheckbox = document.getElementById('privacyPolicy');
         const serviceSelect = document.getElementById('service');
@@ -199,7 +200,7 @@
             }
         });
 
-        contactForm.addEventListener('submit', (event) => {
+        contactForm.addEventListener('submit', async (event) => {
             event.preventDefault();
             
             resultMessage.textContent = '';
@@ -222,18 +223,44 @@
                 return;
             }
 
-            // --- SIMULACIÓN DE ENVÍO ---
             submitButton.disabled = true;
-            resultMessage.classList.add('text-green-600');
-            resultMessage.textContent = 'Gracias por tu mensaje. Nos pondremos en contacto contigo a la brevedad.';
+            buttonText.textContent = 'Enviando...';
 
-            contactForm.reset();
-            
-            setTimeout(() => {
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('/api/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.folio) {
+                    resultMessage.innerHTML = `
+                        <div class="text-green-700 text-left p-4 bg-green-50 rounded-lg border border-green-200">
+                            <p class="font-bold">¡Gracias! Tu solicitud ha sido enviada con éxito.</p>
+                            <p class="mt-2">Tu número de folio es: <span class="font-bold text-gray-900 bg-gray-200 px-2 py-1 rounded">${result.folio}</span></p>
+                            <p class="mt-2">Guárdalo para futuras consultas.</p>
+                        </div>
+                    `;
+                    contactForm.reset();
+                } else {
+                    throw new Error(result.error || 'Algo salió mal. No se pudo procesar tu solicitud.');
+                }
+            } catch (error) {
+                resultMessage.textContent = `Error: ${error.message}`;
+                resultMessage.classList.add('text-red-600');
+            } finally {
                 submitButton.disabled = false;
-                resultMessage.textContent = '';
-                adultContentCheckContainer.classList.add('hidden');
-            }, 5000);
+                buttonText.textContent = 'Enviar para Análisis Gratuito';
+                 setTimeout(() => {
+                    resultMessage.innerHTML = '';
+                    adultContentCheckContainer.classList.add('hidden');
+                }, 10000); 
+            }
         });
 
         // Logic for closing the modal
