@@ -6,7 +6,7 @@
     <title>GestionPrivacidad - Expertos en Eliminación de Huella Digital</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body {
@@ -235,8 +235,12 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data),
                 });
+                
+                // MEJORA: Primero revisamos si la respuesta del servidor es texto o JSON
+                // para evitar el error si la respuesta no es la esperada.
+                const responseText = await response.text();
+                const result = responseText ? JSON.parse(responseText) : {};
 
-                const result = await response.json();
 
                 if (response.ok && result.folio) {
                     resultMessage.innerHTML = `
@@ -247,7 +251,10 @@
                         </div>
                     `;
                     contactForm.reset();
+                    // Ocultar el checkbox de contenido para adultos después de enviar.
+                    adultContentCheckContainer.classList.add('hidden');
                 } else {
+                    // Si el servidor devuelve un error (response.ok es false), usamos el mensaje de error del JSON.
                     throw new Error(result.error || 'Algo salió mal. No se pudo procesar tu solicitud.');
                 }
             } catch (error) {
@@ -257,8 +264,10 @@
                 submitButton.disabled = false;
                 buttonText.textContent = 'Enviar para Análisis Gratuito';
                  setTimeout(() => {
-                    resultMessage.innerHTML = '';
-                    adultContentCheckContainer.classList.add('hidden');
+                    // Limpiamos el mensaje de resultado después de 10 segundos
+                    if (resultMessage.innerHTML.includes('text-green-700')) {
+                       resultMessage.innerHTML = '';
+                    }
                 }, 10000); 
             }
         });
@@ -279,4 +288,3 @@
 
 </body>
 </html>
-
