@@ -11,7 +11,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f7f7f7;
+            background-color: #f9fafb; /* Lighter gray for a cleaner look */
             color: #111827;
         }
         .bg-forest-green { background-color: #22543d; }
@@ -21,6 +21,19 @@
         .hover\:bg-bold-yellow-dark:hover { background-color: #eab308; }
         .focus\:ring-bold-yellow:focus { --tw-ring-color: #facc15; }
         .focus\:border-bold-yellow:focus { border-color: #facc15; }
+        .transition-all { transition: all 0.3s ease-in-out; }
+        .spinner {
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border-left-color: #111827;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -31,24 +44,27 @@
             <div>
                 <a href="/index.html" class="text-2xl font-black text-forest-green tracking-tight">GestionPrivacidad</a>
             </div>
-            <a href="/index.html#contacto" class="hidden sm:inline-block bg-forest-green text-white font-bold py-2 px-4 rounded-lg hover:bg-forest-green-dark transition-colors duration-300">Nueva Consulta</a>
+            <a href="/index.html#contacto" class="hidden sm:inline-block bg-forest-green text-white font-bold py-2 px-4 rounded-lg hover:bg-forest-green-dark transition-all">Nueva Consulta</a>
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto py-16 px-6">
+    <main class="max-w-4xl mx-auto py-16 sm:py-24 px-6">
         <div class="text-center">
-            <!-- MENSAJE AÑADIDO -->
-            <p class="text-lg font-semibold text-gray-600 tracking-wider uppercase">We protect you from the nameless</p>
-            <h1 class="text-4xl font-black text-forest-green sm:text-5xl tracking-tighter mt-2">Seguimiento de Caso</h1>
-            <p class="mt-4 text-lg text-gray-600">Introduce tu número de folio para ver la última actualización de tu solicitud.</p>
+            <p class="text-lg font-semibold text-gray-500 tracking-wider uppercase">We protect you from the nameless</p>
+            <h1 class="text-4xl font-black text-forest-green sm:text-5xl tracking-tighter mt-2">Estado de tu Caso</h1>
+            <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Tu tranquilidad es nuestra prioridad. Introduce tu folio para ver el progreso de tu solicitud.</p>
         </div>
 
         <div class="mt-12 max-w-lg mx-auto bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-            <form id="statusForm" class="flex flex-col sm:flex-row items-center gap-4">
-                <input id="folio" name="folio" type="text" required class="bg-gray-100 border-2 border-gray-200 text-gray-900 placeholder-gray-500 rounded-lg focus:ring-bold-yellow focus:border-bold-yellow block w-full p-3" placeholder="Ej: GP-167...">
-                <button type="submit" id="submitButton" class="w-full sm:w-auto flex-shrink-0 justify-center py-3 px-6 text-lg font-bold rounded-lg text-gray-900 bg-bold-yellow hover:bg-bold-yellow-dark transition-colors">
-                    <span id="buttonText">Consultar</span>
-                </button>
+            <form id="statusForm">
+                <label for="folio" class="block text-sm font-bold text-gray-700 mb-2">Número de Folio</label>
+                <div class="flex flex-col sm:flex-row items-center gap-4">
+                    <input id="folio" name="folio" type="text" required class="bg-gray-50 border-2 border-gray-300 text-gray-900 placeholder-gray-400 rounded-lg focus:ring-bold-yellow focus:border-bold-yellow block w-full p-3 transition-all" placeholder="Ej: GP-167...">
+                    <button type="submit" id="submitButton" class="w-full sm:w-auto flex-shrink-0 flex items-center justify-center gap-2 py-3 px-6 text-lg font-bold rounded-lg text-gray-900 bg-bold-yellow hover:bg-bold-yellow-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-bold-yellow transition-all">
+                        <div id="spinner" class="spinner hidden"></div>
+                        <span id="buttonText">Consultar</span>
+                    </button>
+                </div>
             </form>
         </div>
 
@@ -58,79 +74,111 @@
         </div>
     </main>
 
+    <!-- Aviso de Privacidad y Footer -->
+    <footer id="aviso-privacidad" class="w-full bg-white border-t border-gray-200 py-16 px-6 mt-16">
+        <div class="max-w-4xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="md:col-span-1">
+                    <h3 class="text-2xl font-black text-forest-green">Aviso de Privacidad</h3>
+                </div>
+                <div class="md:col-span-2 text-gray-600 text-sm space-y-4">
+                    <p><strong>Responsable:</strong> GestionPrivacidad.</p>
+                    <p><strong>Datos Recabados:</strong> Nombre completo, correo electrónico, tipo de servicio seleccionado y la descripción de su caso.</p>
+                    <p><strong>Finalidades:</strong> Los datos serán utilizados para identificarle, contactarle, analizar la viabilidad de su caso y proveerle información sobre nuestros servicios.</p>
+                    <p><strong>Derechos ARCO:</strong> Puede ejercer sus derechos de Acceso, Rectificación, Cancelación y Oposición a través de nuestros canales de contacto.</p>
+                    <p class="mt-4"><strong>Última actualización:</strong> 27 de septiembre de 2025.</p>
+                </div>
+            </div>
+             <div class="mt-16 border-t border-gray-200 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 GestionPrivacidad | Monterrey, Nuevo León, México.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
         const statusForm = document.getElementById('statusForm');
         const submitButton = document.getElementById('submitButton');
         const buttonText = document.getElementById('buttonText');
         const resultArea = document.getElementById('resultArea');
         const folioInput = document.getElementById('folio');
+        const spinner = document.getElementById('spinner');
 
         statusForm.addEventListener('submit', async (event) => {
             event.preventDefault();
             
-            resultArea.innerHTML = ''; // Limpiar resultados anteriores
-            const folio = folioInput.value.trim();
+            resultArea.innerHTML = '';
+            const folio = folioInput.value.trim().toUpperCase(); // Convertir a mayúsculas para consistencia
 
             if (!folio) {
-                resultArea.innerHTML = `<div class="text-center text-red-600 font-medium">Por favor, introduce un número de folio.</div>`;
+                resultArea.innerHTML = `<div class="text-center text-red-700 font-medium p-4 bg-red-100 border border-red-200 rounded-lg">Por favor, introduce un número de folio.</div>`;
                 return;
             }
 
             submitButton.disabled = true;
-            buttonText.textContent = 'Buscando...';
+            buttonText.textContent = 'Buscando';
+            spinner.classList.remove('hidden');
 
             try {
                 const response = await fetch(`/api/status?folio=${encodeURIComponent(folio)}`);
                 const result = await response.json();
 
                 if (response.ok) {
-                    // Verificamos el estado del caso para mostrar un mensaje personalizado.
-                    
                     let resultHTML = '';
                     if (result.status === 'Recibido - En Análisis') {
-                        // Mensaje para casos que aún se están analizando
                         resultHTML = `
-                        <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 text-gray-700 space-y-4">
-                            <h3 class="text-2xl font-bold text-forest-green border-b pb-2">Detalles del Caso</h3>
-                            <div>
-                                <p class="font-semibold">Folio:</p>
-                                <p class="bg-gray-100 p-2 rounded-md font-mono">${result.folio}</p>
+                        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden animate-fade-in">
+                            <div class="p-6">
+                                <div class="flex items-center gap-3">
+                                    <svg class="w-6 h-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm-1.12 11.48a.75.75 0 001.12 0l2.25-2.25a.75.75 0 00-1.12-1.12l-2.25 2.25a.75.75 0 000 1.12z" /></svg>
+                                    <h3 class="text-xl font-bold text-gray-800">Detalles de tu Caso</h3>
+                                </div>
+                                <div class="mt-6 space-y-4 text-sm">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-semibold text-gray-500">Folio:</span>
+                                        <span class="font-mono text-gray-900 bg-gray-100 px-2 py-1 rounded-md">${result.folio}</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-semibold text-gray-500">Última Actualización:</span>
+                                        <span>${result.lastUpdate}</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-semibold text-gray-500">Estado:</span>
+                                        <span class="font-bold px-2 py-1 rounded-full bg-yellow-100 text-yellow-800">${result.status}</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <p class="font-semibold">Estado Actual:</p>
-                                <p class="bg-yellow-100 text-yellow-800 font-bold p-2 rounded-md">${result.status}</p>
-                            </div>
-                            <div>
-                                <p class="font-semibold">Última Actualización:</p>
-                                <p>${result.lastUpdate}</p>
-                            </div>
-                            <!-- Mensaje personalizado para el estado 'En Análisis' -->
-                            <div class="mt-4 p-4 bg-blue-50 border-l-4 border-blue-400 text-blue-800">
-                                <p class="font-bold">Siguientes Pasos:</p>
-                                <p>Nuestro equipo está revisando la información que nos proporcionaste. Nos pondremos en contacto contigo a través del correo electrónico registrado para darte los resultados del análisis y los siguientes pasos a seguir.</p>
+                            <div class="bg-blue-50 p-6 border-t border-blue-200">
+                                <h4 class="font-bold text-blue-900">Siguientes Pasos</h4>
+                                <p class="mt-2 text-blue-800 text-sm">Nuestro equipo está analizando tu caso. Nos pondremos en contacto contigo vía correo electrónico con los resultados y las acciones a seguir. Agradecemos tu paciencia.</p>
                             </div>
                         </div>
                         `;
                     } else {
-                        // Mensaje genérico para cualquier otro estado
-                        resultHTML = `
-                        <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 text-gray-700 space-y-4">
-                            <h3 class="text-2xl font-bold text-forest-green border-b pb-2">Detalles del Caso</h3>
-                            <div>
-                                <p class="font-semibold">Folio:</p>
-                                <p class="bg-gray-100 p-2 rounded-md font-mono">${result.folio}</p>
+                        // Diseño para otros estados (ej. "Completado")
+                         resultHTML = `
+                        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                            <div class="p-6">
+                                <div class="flex items-center gap-3">
+                                    <svg class="w-6 h-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm-1.12 11.48a.75.75 0 001.12 0l2.25-2.25a.75.75 0 00-1.12-1.12l-2.25 2.25a.75.75 0 000 1.12z" /></svg>
+                                    <h3 class="text-xl font-bold text-gray-800">Detalles de tu Caso</h3>
+                                </div>
+                                <div class="mt-6 space-y-4 text-sm">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-semibold text-gray-500">Folio:</span>
+                                        <span class="font-mono text-gray-900 bg-gray-100 px-2 py-1 rounded-md">${result.folio}</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-semibold text-gray-500">Última Actualización:</span>
+                                        <span>${result.lastUpdate}</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-semibold text-gray-500">Estado:</span>
+                                        <span class="font-bold px-2 py-1 rounded-full bg-green-100 text-green-800">${result.status}</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <p class="font-semibold">Estado Actual:</p>
-                                <p class="bg-green-100 text-green-800 font-bold p-2 rounded-md">${result.status}</p>
-                            </div>
-                            <div>
-                                <p class="font-semibold">Última Actualización:</p>
-                                <p>${result.lastUpdate}</p>
-                            </div>
-                             <div>
-                                <p class="font-semibold">Servicio Solicitado:</p>
-                                <p class="capitalize">${result.service}</p>
+                            <div class="bg-gray-50 p-6 border-t border-gray-200 text-center">
+                                <a href="/index.html#contacto" class="text-sm font-bold text-forest-green hover:underline">¿Necesitas otra consulta?</a>
                             </div>
                         </div>
                         `;
@@ -138,14 +186,15 @@
                     resultArea.innerHTML = resultHTML;
 
                 } else {
-                    throw new Error(result.error || 'No se pudo procesar la consulta.');
+                    throw new Error(result.error || 'Folio no encontrado o error en la consulta.');
                 }
 
             } catch (error) {
-                resultArea.innerHTML = `<div class="text-center text-red-600 font-medium p-4 bg-red-50 border border-red-200 rounded-lg">${error.message}</div>`;
+                resultArea.innerHTML = `<div class="text-center text-red-700 font-medium p-4 bg-red-100 border border-red-200 rounded-lg">${error.message}</div>`;
             } finally {
                 submitButton.disabled = false;
                 buttonText.textContent = 'Consultar';
+                spinner.classList.add('hidden');
             }
         });
     </script>
