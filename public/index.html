@@ -152,7 +152,7 @@
                     <p><strong>Datos Recabados:</strong> Nombre completo, correo electrónico, tipo de servicio seleccionado y la descripción de su caso.</p>
                     <p><strong>Finalidades:</strong> Los datos serán utilizados para identificarle, contactarle, analizar la viabilidad de su caso y proveerle información sobre nuestros servicios.</p>
                     <p><strong>Derechos ARCO:</strong> Puede ejercer sus derechos de Acceso, Rectificación, Cancelación y Oposición a través de nuestros canales de contacto.</p>
-                    <p class="mt-4"><strong>Última actualización:</strong> 26 de septiembre de 2025.</p>
+                    <p class="mt-4"><strong>Última actualización:</strong> 27 de septiembre de 2025.</p>
                 </div>
             </div>
              <div class="mt-16 border-t border-gray-200 pt-8 text-center text-gray-500 text-sm">
@@ -236,13 +236,23 @@
                     body: JSON.stringify(data),
                 });
                 
-                // MEJORA: Primero revisamos si la respuesta del servidor es texto o JSON
-                // para evitar el error si la respuesta no es la esperada.
-                const responseText = await response.text();
-                const result = responseText ? JSON.parse(responseText) : {};
+                // --- MANEJO DE RESPUESTA MEJORADO ---
+                // Revisamos el tipo de contenido para decidir cómo procesar la respuesta.
+                const contentType = response.headers.get("content-type");
+                let result;
 
+                if (contentType && contentType.includes("application/json")) {
+                    // Si el servidor dice que es JSON, lo procesamos como tal.
+                    result = await response.json();
+                } else {
+                    // Si no es JSON (ej. un error de HTML del servidor), lo leemos como texto para depuración.
+                    const responseText = await response.text();
+                    console.error("Respuesta inesperada (no-JSON) del servidor:", responseText);
+                    // Creamos un objeto `result` vacío para que la lógica de error posterior funcione.
+                    result = {}; 
+                }
 
-                if (response.ok && result.folio) {
+                if (response.ok) {
                     resultMessage.innerHTML = `
                         <div class="text-green-700 text-left p-4 bg-green-50 rounded-lg border border-green-200">
                             <p class="font-bold">¡Gracias! Tu solicitud ha sido enviada con éxito.</p>
@@ -251,20 +261,19 @@
                         </div>
                     `;
                     contactForm.reset();
-                    // Ocultar el checkbox de contenido para adultos después de enviar.
                     adultContentCheckContainer.classList.add('hidden');
                 } else {
-                    // Si el servidor devuelve un error (response.ok es false), usamos el mensaje de error del JSON.
+                    // Usamos el mensaje de error del JSON si existe, si no, el mensaje genérico.
                     throw new Error(result.error || 'Algo salió mal. No se pudo procesar tu solicitud.');
                 }
             } catch (error) {
+                // El error puede ser de la red, del parseo, o el que lanzamos nosotros mismos.
                 resultMessage.textContent = `Error: ${error.message}`;
                 resultMessage.classList.add('text-red-600');
             } finally {
                 submitButton.disabled = false;
                 buttonText.textContent = 'Enviar para Análisis Gratuito';
                  setTimeout(() => {
-                    // Limpiamos el mensaje de resultado después de 10 segundos
                     if (resultMessage.innerHTML.includes('text-green-700')) {
                        resultMessage.innerHTML = '';
                     }
