@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguimiento de Caso - GestionPrivacidad</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+            color: #111827;
+        }
+        .bg-forest-green { background-color: #22543d; }
+        .hover\:bg-forest-green-dark:hover { background-color: #1c4532; }
+        .text-forest-green { color: #22543d; }
+        .bg-bold-yellow { background-color: #facc15; }
+        .hover\:bg-bold-yellow-dark:hover { background-color: #eab308; }
+        .focus\:ring-bold-yellow:focus { --tw-ring-color: #facc15; }
+        .focus\:border-bold-yellow:focus { border-color: #facc15; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="w-full bg-white/80 backdrop-blur-sm border-b border-gray-200 p-6 sticky top-0 z-40">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            <div>
+                <a href="/index.html" class="text-2xl font-black text-forest-green tracking-tight">GestionPrivacidad</a>
+            </div>
+            <a href="/index.html#contacto" class="hidden sm:inline-block bg-forest-green text-white font-bold py-2 px-4 rounded-lg hover:bg-forest-green-dark transition-colors duration-300">Nueva Consulta</a>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto py-16 px-6">
+        <div class="text-center">
+            <h1 class="text-4xl font-black text-forest-green sm:text-5xl tracking-tighter">Seguimiento de Caso</h1>
+            <p class="mt-4 text-lg text-gray-600">Introduce tu número de folio para ver la última actualización de tu solicitud.</p>
+        </div>
+
+        <div class="mt-12 max-w-lg mx-auto bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+            <form id="statusForm" class="flex flex-col sm:flex-row items-center gap-4">
+                <input id="folio" name="folio" type="text" required class="bg-gray-100 border-2 border-gray-200 text-gray-900 placeholder-gray-500 rounded-lg focus:ring-bold-yellow focus:border-bold-yellow block w-full p-3" placeholder="Ej: GP-167...">
+                <button type="submit" id="submitButton" class="w-full sm:w-auto flex-shrink-0 justify-center py-3 px-6 text-lg font-bold rounded-lg text-gray-900 bg-bold-yellow hover:bg-bold-yellow-dark transition-colors">
+                    <span id="buttonText">Consultar</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Área de Resultados -->
+        <div id="resultArea" class="mt-8 max-w-lg mx-auto">
+            <!-- Los resultados se insertarán aquí dinámicamente -->
+        </div>
+    </main>
+
+    <script>
+        const statusForm = document.getElementById('statusForm');
+        const submitButton = document.getElementById('submitButton');
+        const buttonText = document.getElementById('buttonText');
+        const resultArea = document.getElementById('resultArea');
+        const folioInput = document.getElementById('folio');
+
+        statusForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            
+            resultArea.innerHTML = ''; // Limpiar resultados anteriores
+            const folio = folioInput.value.trim();
+
+            if (!folio) {
+                resultArea.innerHTML = `<div class="text-center text-red-600 font-medium">Por favor, introduce un número de folio.</div>`;
+                return;
+            }
+
+            submitButton.disabled = true;
+            buttonText.textContent = 'Buscando...';
+
+            try {
+                // Hacemos la solicitud a la nueva API de estado
+                const response = await fetch(`/api/status?folio=${encodeURIComponent(folio)}`);
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Si el caso se encuentra, mostramos los detalles
+                    resultArea.innerHTML = `
+                        <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 text-gray-700 space-y-4">
+                            <h3 class="text-2xl font-bold text-forest-green border-b pb-2">Detalles del Caso</h3>
+                            <div>
+                                <p class="font-semibold">Folio:</p>
+                                <p class="bg-gray-100 p-2 rounded-md font-mono">${result.folio}</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Estado Actual:</p>
+                                <p class="bg-green-100 text-green-800 font-bold p-2 rounded-md">${result.status}</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Última Actualización:</p>
+                                <p>${result.lastUpdate}</p>
+                            </div>
+                             <div>
+                                <p class="font-semibold">Servicio Solicitado:</p>
+                                <p class="capitalize">${result.service}</p>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    // Si el servidor devuelve un error (ej. 404), usamos su mensaje
+                    throw new Error(result.error || 'No se pudo procesar la consulta.');
+                }
+
+            } catch (error) {
+                resultArea.innerHTML = `<div class="text-center text-red-600 font-medium p-4 bg-red-50 border border-red-200 rounded-lg">${error.message}</div>`;
+            } finally {
+                submitButton.disabled = false;
+                buttonText.textContent = 'Consultar';
+            }
+        });
+    </script>
+</body>
+</html>
