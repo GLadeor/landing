@@ -1,17 +1,19 @@
 export async function onRequest(context) {
   // Solo se aceptan solicitudes POST
   if (context.request.method !== 'POST') {
-    // CORRECCIÓN: Devolver siempre una respuesta JSON, incluso para errores.
-    const errorResponse = {
-      error: 'Método no permitido. Solo se aceptan solicitudes POST.'
-    };
-    return new Response(JSON.stringify(errorResponse), {
-      status: 405,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    const errorResponse = { error: 'Método no permitido. Solo se aceptan solicitudes POST.' };
+    // Usamos Response.json para una respuesta más limpia. Automáticamente añade el Content-Type.
+    return Response.json(errorResponse, { status: 405 });
   }
 
   try {
+    // --- VERIFICACIÓN IMPORTANTE ---
+    // Verificamos que el KV namespace binding exista. Este es el error más común
+    // en la configuración de Cloudflare Pages.
+    if (!context.env.CONTACT_FORM) {
+        throw new Error("El KV namespace 'CONTACT_FORM' no está configurado correctamente en el entorno.");
+    }
+
     const data = await context.request.json();
 
     // Generar un número de folio único
@@ -25,28 +27,21 @@ export async function onRequest(context) {
       lastUpdate: new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'short', day: 'numeric' }),
     };
 
-    // --- IMPORTANTE ---
-    // Esta línea se conecta a tu KV namespace.
-    // Asegúrate de haber creado uno llamado "CONTACT_FORM" en Cloudflare
-    // y de haberlo enlazado (binding) a este proyecto en la configuración.
-    const CONTACT_FORM = context.env.CONTACT_FORM;
-    await CONTACT_FORM.put(folio, JSON.stringify(caseData));
+    // Usamos la variable del entorno para acceder al KV namespace
+    await context.env.CONTACT_FORM.put(folio, JSON.stringify(caseData));
 
     // Devolver una respuesta exitosa con el folio
-    return new Response(JSON.stringify({
+    const successResponse = {
       message: 'Solicitud recibida con éxito',
       folio: folio
-    }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    };
+    return Response.json(successResponse, { status: 200 });
 
   } catch (error) {
     // Manejar cualquier error
-    console.error("Error en /api/submit:", error);
-    return new Response(JSON.stringify({ error: 'Error interno al procesar la solicitud.' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    console.error("Error en /api/submit:", error.message);
+    // Devolvemos el mensaje de error real al cliente para una mejor depuración.
+    const errorResponse = { error: error.message || 'Error interno al procesar la solicitud.' };
+    return Response.json(errorResponse, { status: 500 });
   }
 }
