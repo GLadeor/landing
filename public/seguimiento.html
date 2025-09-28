@@ -37,7 +37,9 @@
 
     <main class="max-w-4xl mx-auto py-16 px-6">
         <div class="text-center">
-            <h1 class="text-4xl font-black text-forest-green sm:text-5xl tracking-tighter">Seguimiento de Caso</h1>
+            <!-- MENSAJE AÑADIDO -->
+            <p class="text-lg font-semibold text-gray-600 tracking-wider uppercase">We protect you from the nameless</p>
+            <h1 class="text-4xl font-black text-forest-green sm:text-5xl tracking-tighter mt-2">Seguimiento de Caso</h1>
             <p class="mt-4 text-lg text-gray-600">Introduce tu número de folio para ver la última actualización de tu solicitud.</p>
         </div>
 
@@ -78,13 +80,40 @@
             buttonText.textContent = 'Buscando...';
 
             try {
-                // Hacemos la solicitud a la nueva API de estado
                 const response = await fetch(`/api/status?folio=${encodeURIComponent(folio)}`);
                 const result = await response.json();
 
                 if (response.ok) {
-                    // Si el caso se encuentra, mostramos los detalles
-                    resultArea.innerHTML = `
+                    // Verificamos el estado del caso para mostrar un mensaje personalizado.
+                    
+                    let resultHTML = '';
+                    if (result.status === 'Recibido - En Análisis') {
+                        // Mensaje para casos que aún se están analizando
+                        resultHTML = `
+                        <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 text-gray-700 space-y-4">
+                            <h3 class="text-2xl font-bold text-forest-green border-b pb-2">Detalles del Caso</h3>
+                            <div>
+                                <p class="font-semibold">Folio:</p>
+                                <p class="bg-gray-100 p-2 rounded-md font-mono">${result.folio}</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Estado Actual:</p>
+                                <p class="bg-yellow-100 text-yellow-800 font-bold p-2 rounded-md">${result.status}</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Última Actualización:</p>
+                                <p>${result.lastUpdate}</p>
+                            </div>
+                            <!-- Mensaje personalizado para el estado 'En Análisis' -->
+                            <div class="mt-4 p-4 bg-blue-50 border-l-4 border-blue-400 text-blue-800">
+                                <p class="font-bold">Siguientes Pasos:</p>
+                                <p>Nuestro equipo está revisando la información que nos proporcionaste. Nos pondremos en contacto contigo a través del correo electrónico registrado para darte los resultados del análisis y los siguientes pasos a seguir.</p>
+                            </div>
+                        </div>
+                        `;
+                    } else {
+                        // Mensaje genérico para cualquier otro estado
+                        resultHTML = `
                         <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 text-gray-700 space-y-4">
                             <h3 class="text-2xl font-bold text-forest-green border-b pb-2">Detalles del Caso</h3>
                             <div>
@@ -104,9 +133,11 @@
                                 <p class="capitalize">${result.service}</p>
                             </div>
                         </div>
-                    `;
+                        `;
+                    }
+                    resultArea.innerHTML = resultHTML;
+
                 } else {
-                    // Si el servidor devuelve un error (ej. 404), usamos su mensaje
                     throw new Error(result.error || 'No se pudo procesar la consulta.');
                 }
 
@@ -120,3 +151,4 @@
     </script>
 </body>
 </html>
+
