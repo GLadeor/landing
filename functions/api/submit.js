@@ -1,47 +1,36 @@
-export async function onRequest(context) {
-  // Solo se aceptan solicitudes POST
-  if (context.request.method !== 'POST') {
-    const errorResponse = { error: 'Método no permitido. Solo se aceptan solicitudes POST.' };
-    // Usamos Response.json para una respuesta más limpia. Automáticamente añade el Content-Type.
-    return Response.json(errorResponse, { status: 405 });
-  }
+// functions/api/submit.js
+// Se cambia a onRequestPost para manejar explícitamente solicitudes POST.
 
+export async function onRequestPost(context) {
   try {
-    // --- VERIFICACIÓN IMPORTANTE ---
-    // Verificamos que el KV namespace binding exista. Este es el error más común
-    // en la configuración de Cloudflare Pages.
-    if (!context.env.CONTACT_FORM) {
-        throw new Error("El KV namespace 'CONTACT_FORM' no está configurado correctamente en el entorno.");
-    }
-
     const data = await context.request.json();
-
-    // Generar un número de folio único
     const folio = `GP-${Date.now()}-${crypto.randomUUID().slice(0, 4).toUpperCase()}`;
 
-    // Preparar el objeto del caso para guardarlo
     const caseData = {
-      ...data, // Datos del formulario
+      ...data,
       folio: folio,
       status: "Recibido - En Análisis",
       lastUpdate: new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'short', day: 'numeric' }),
+      description: "Hemos recibido tu solicitud y nuestro equipo la está revisando. Analizaremos la viabilidad y nos pondremos en contacto si requerimos más información."
     };
 
-    // Usamos la variable del entorno para acceder al KV namespace
-    await context.env.CONTACT_FORM.put(folio, JSON.stringify(caseData));
+    const CONTACT_FORM = context.env.CONTACT_FORM;
+    await CONTACT_FORM.put(folio, JSON.stringify(caseData));
 
-    // Devolver una respuesta exitosa con el folio
-    const successResponse = {
-      message: 'Solicitud recibida con éxito',
-      folio: folio
-    };
-    return Response.json(successResponse, { status: 200 });
+    return new Response(JSON.stringify({ 
+        message: 'Solicitud recibida con éxito', 
+        folio: folio 
+    }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+    });
 
   } catch (error) {
-    // Manejar cualquier error
-    console.error("Error en /api/submit:", error.message);
-    // Devolvemos el mensaje de error real al cliente para una mejor depuración.
-    const errorResponse = { error: error.message || 'Error interno al procesar la solicitud.' };
-    return Response.json(errorResponse, { status: 500 });
+    console.error("Error en /api/submit:", error);
+    return new Response(JSON.stringify({ error: 'Error interno al procesar la solicitud.' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 }
+
