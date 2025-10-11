@@ -6,197 +6,169 @@
     <title>Seguimiento de Caso - GestionPrivacidad</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f9fafb; /* Lighter gray for a cleaner look */
-            color: #111827;
+            background-color: #FAEFE7; /* Terracota claro, igual que en la sección de contacto del index */
+            color: #312F2F;
         }
-        .bg-forest-green { background-color: #22543d; }
-        .hover\:bg-forest-green-dark:hover { background-color: #1c4532; }
-        .text-forest-green { color: #22543d; }
-        .bg-bold-yellow { background-color: #facc15; }
-        .hover\:bg-bold-yellow-dark:hover { background-color: #eab308; }
-        .focus\:ring-bold-yellow:focus { --tw-ring-color: #facc15; }
-        .focus\:border-bold-yellow:focus { border-color: #facc15; }
-        .transition-all { transition: all 0.3s ease-in-out; }
-        .spinner {
-            border: 2px solid rgba(0, 0, 0, 0.1);
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            border-left-color: #111827;
-            animation: spin 1s linear infinite;
+        html {
+            scroll-behavior: smooth;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .font-lora {
+            font-family: 'Lora', serif;
+        }
+        .bg-sage-green { background-color: #5F7161; }
+        .hover\:bg-sage-green-dark:hover { background-color: #49584B; }
+        .text-sage-green { color: #5F7161; }
+        .ring-sage-green:focus { --tw-ring-color: #5F7161; }
+        .border-sage-green { border-color: #5F7161; }
+        
+        .hero-bg-shape {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
         }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Header -->
-    <header class="w-full bg-white/80 backdrop-blur-sm border-b border-gray-200 p-6 sticky top-0 z-40">
-        <div class="max-w-4xl mx-auto flex items-center justify-between">
+    <header class="w-full bg-white/80 backdrop-blur-sm p-6 z-40 border-b border-gray-200">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
             <div>
-                <a href="/index.html" class="text-2xl font-black text-forest-green tracking-tight">GestionPrivacidad</a>
+                <h1 class="text-2xl font-lora text-sage-green tracking-tight">GestionPrivacidad</h1>
             </div>
-            <a href="/index.html#contacto" class="hidden sm:inline-block bg-forest-green text-white font-bold py-2 px-4 rounded-lg hover:bg-forest-green-dark transition-all">Nueva Consulta</a>
+            <a href="./index.html" class="text-gray-700 hover:text-black font-bold transition-colors">Volver al Inicio</a>
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto py-16 sm:py-24 px-6">
-        <div class="text-center">
-            <p class="text-lg font-semibold text-gray-500 tracking-wider uppercase">We protect you from the nameless</p>
-            <h1 class="text-4xl font-black text-forest-green sm:text-5xl tracking-tighter mt-2">Estado de tu Caso</h1>
-            <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Tu tranquilidad es nuestra prioridad. Introduce tu folio para ver el progreso de tu solicitud.</p>
+    <main class="relative flex flex-col items-center justify-center min-h-[70vh] py-10 px-4">
+        
+        <!-- Contenedor con fondo orgánico -->
+        <div class="hero-bg-shape">
+            <svg viewBox="0 0 1024 1024" class="opacity-50">
+                <defs>
+                    <radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                        <stop offset="0%" style="stop-color:rgb(228, 155, 100, 0.1);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgb(250, 239, 231, 0);stop-opacity:1" />
+                    </radialGradient>
+                </defs>
+                <circle cx="200" cy="500" r="400" fill="url(#grad1)" />
+                <circle cx="900" cy="200" r="300" fill="url(#grad1)" />
+            </svg>
         </div>
 
-        <div class="mt-12 max-w-lg mx-auto bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-            <form id="statusForm">
-                <label for="folio" class="block text-sm font-bold text-gray-700 mb-2">Número de Folio</label>
-                <div class="flex flex-col sm:flex-row items-center gap-4">
-                    <input id="folio" name="folio" type="text" required class="bg-gray-50 border-2 border-gray-300 text-gray-900 placeholder-gray-400 rounded-lg focus:ring-bold-yellow focus:border-bold-yellow block w-full p-3 transition-all" placeholder="Ej: GP-167...">
-                    <button type="submit" id="submitButton" class="w-full sm:w-auto flex-shrink-0 flex items-center justify-center gap-2 py-3 px-6 text-lg font-bold rounded-lg text-gray-900 bg-bold-yellow hover:bg-bold-yellow-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-bold-yellow transition-all">
-                        <div id="spinner" class="spinner hidden"></div>
+        <div class="relative w-full max-w-2xl text-center z-10">
+            <h2 class="text-4xl font-lora text-gray-900 sm:text-5xl tracking-tight leading-tight">Seguimiento de tu Caso</h2>
+            <p class="mt-4 text-lg text-gray-600 max-w-xl mx-auto">
+                Introduce el número de folio que te fue proporcionado para consultar el estado de tu solicitud de forma segura.
+            </p>
+
+            <form id="statusForm" class="mt-12 max-w-lg mx-auto" novalidate>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <input type="text" id="caseId" name="caseId" required class="flex-grow bg-white border-2 border-gray-200 text-gray-900 placeholder-gray-500 rounded-lg focus:ring-sage-green focus:border-sage-green block w-full p-4" placeholder="Ej: GP-12345...">
+                    <button type="submit" id="submitButton" class="group relative flex justify-center py-4 px-8 text-lg font-semibold rounded-lg text-white bg-sage-green hover:bg-sage-green-dark transition-colors">
                         <span id="buttonText">Consultar</span>
+                        <span id="buttonSpinner" class="hidden h-5 w-5 animate-spin">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="h-6 w-6"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                        </span>
                     </button>
                 </div>
             </form>
-        </div>
-
-        <!-- Área de Resultados -->
-        <div id="resultArea" class="mt-8 max-w-lg mx-auto">
-            <!-- Los resultados se insertarán aquí dinámicamente -->
+            
+            <div id="resultContainer" class="mt-12 text-left hidden"></div>
         </div>
     </main>
 
-    <!-- Aviso de Privacidad y Footer -->
-    <footer id="aviso-privacidad" class="w-full bg-white border-t border-gray-200 py-16 px-6 mt-16">
-        <div class="max-w-4xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="md:col-span-1">
-                    <h3 class="text-2xl font-black text-forest-green">Aviso de Privacidad</h3>
-                </div>
-                <div class="md:col-span-2 text-gray-600 text-sm space-y-4">
-                    <p><strong>Responsable:</strong> GestionPrivacidad.</p>
-                    <p><strong>Datos Recabados:</strong> Nombre completo, correo electrónico, tipo de servicio seleccionado y la descripción de su caso.</p>
-                    <p><strong>Finalidades:</strong> Los datos serán utilizados para identificarle, contactarle, analizar la viabilidad de su caso y proveerle información sobre nuestros servicios.</p>
-                    <p><strong>Derechos ARCO:</strong> Puede ejercer sus derechos de Acceso, Rectificación, Cancelación y Oposición a través de nuestros canales de contacto.</p>
-                    <p class="mt-4"><strong>Última actualización:</strong> 27 de septiembre de 2025.</p>
-                </div>
-            </div>
-             <div class="mt-16 border-t border-gray-200 pt-8 text-center text-gray-500 text-sm">
-                <p>&copy; 2025 GestionPrivacidad | Monterrey, Nuevo León, México.</p>
-            </div>
-        </div>
+    <footer class="text-center p-8 mt-16 text-gray-500 text-sm border-t border-gray-200">
+        <p>&copy; 2025 GestionPrivacidad | Monterrey, N.L., México</p>
     </footer>
 
     <script>
         const statusForm = document.getElementById('statusForm');
+        const caseIdInput = document.getElementById('caseId');
         const submitButton = document.getElementById('submitButton');
         const buttonText = document.getElementById('buttonText');
-        const resultArea = document.getElementById('resultArea');
-        const folioInput = document.getElementById('folio');
-        const spinner = document.getElementById('spinner');
+        const buttonSpinner = document.getElementById('buttonSpinner');
+        const resultContainer = document.getElementById('resultContainer');
 
         statusForm.addEventListener('submit', async (event) => {
             event.preventDefault();
-            
-            resultArea.innerHTML = '';
-            const folio = folioInput.value.trim().toUpperCase(); // Convertir a mayúsculas para consistencia
+            resultContainer.classList.add('hidden');
+            resultContainer.innerHTML = '';
 
-            if (!folio) {
-                resultArea.innerHTML = `<div class="text-center text-red-700 font-medium p-4 bg-red-100 border border-red-200 rounded-lg">Por favor, introduce un número de folio.</div>`;
+            const caseId = caseIdInput.value.trim();
+            if (!caseId) {
+                showError("Por favor, introduce un número de folio.");
                 return;
             }
 
             submitButton.disabled = true;
-            buttonText.textContent = 'Buscando';
-            spinner.classList.remove('hidden');
+            buttonText.classList.add('hidden');
+            buttonSpinner.classList.remove('hidden');
 
             try {
-                const response = await fetch(`/api/status?folio=${encodeURIComponent(folio)}`);
-                const result = await response.json();
+                const response = await fetch('/api/status', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ caseId: caseId.toUpperCase() }),
+                });
 
                 if (response.ok) {
-                    let resultHTML = '';
-                    if (result.status === 'Recibido - En Análisis') {
-                        resultHTML = `
-                        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden animate-fade-in">
-                            <div class="p-6">
-                                <div class="flex items-center gap-3">
-                                    <svg class="w-6 h-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm-1.12 11.48a.75.75 0 001.12 0l2.25-2.25a.75.75 0 00-1.12-1.12l-2.25 2.25a.75.75 0 000 1.12z" /></svg>
-                                    <h3 class="text-xl font-bold text-gray-800">Detalles de tu Caso</h3>
-                                </div>
-                                <div class="mt-6 space-y-4 text-sm">
-                                    <div class="flex justify-between items-center">
-                                        <span class="font-semibold text-gray-500">Folio:</span>
-                                        <span class="font-mono text-gray-900 bg-gray-100 px-2 py-1 rounded-md">${result.folio}</span>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <span class="font-semibold text-gray-500">Última Actualización:</span>
-                                        <span>${result.lastUpdate}</span>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <span class="font-semibold text-gray-500">Estado:</span>
-                                        <span class="font-bold px-2 py-1 rounded-full bg-yellow-100 text-yellow-800">${result.status}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bg-blue-50 p-6 border-t border-blue-200">
-                                <h4 class="font-bold text-blue-900">Siguientes Pasos</h4>
-                                <p class="mt-2 text-blue-800 text-sm">Nuestro equipo está analizando tu caso. Nos pondremos en contacto contigo vía correo electrónico con los resultados y las acciones a seguir. Agradecemos tu paciencia.</p>
-                            </div>
-                        </div>
-                        `;
-                    } else {
-                        // Diseño para otros estados (ej. "Completado")
-                         resultHTML = `
-                        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-                            <div class="p-6">
-                                <div class="flex items-center gap-3">
-                                    <svg class="w-6 h-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm-1.12 11.48a.75.75 0 001.12 0l2.25-2.25a.75.75 0 00-1.12-1.12l-2.25 2.25a.75.75 0 000 1.12z" /></svg>
-                                    <h3 class="text-xl font-bold text-gray-800">Detalles de tu Caso</h3>
-                                </div>
-                                <div class="mt-6 space-y-4 text-sm">
-                                    <div class="flex justify-between items-center">
-                                        <span class="font-semibold text-gray-500">Folio:</span>
-                                        <span class="font-mono text-gray-900 bg-gray-100 px-2 py-1 rounded-md">${result.folio}</span>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <span class="font-semibold text-gray-500">Última Actualización:</span>
-                                        <span>${result.lastUpdate}</span>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <span class="font-semibold text-gray-500">Estado:</span>
-                                        <span class="font-bold px-2 py-1 rounded-full bg-green-100 text-green-800">${result.status}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bg-gray-50 p-6 border-t border-gray-200 text-center">
-                                <a href="/index.html#contacto" class="text-sm font-bold text-forest-green hover:underline">¿Necesitas otra consulta?</a>
-                            </div>
-                        </div>
-                        `;
-                    }
-                    resultArea.innerHTML = resultHTML;
-
+                    const caseData = await response.json();
+                    displayResult(caseId.toUpperCase(), caseData);
+                } else if (response.status === 404) {
+                    displayNotFound(caseId.toUpperCase());
                 } else {
-                    throw new Error(result.error || 'Folio no encontrado o error en la consulta.');
+                    throw new Error('Ocurrió un error al consultar el caso.');
                 }
-
             } catch (error) {
-                resultArea.innerHTML = `<div class="text-center text-red-700 font-medium p-4 bg-red-100 border border-red-200 rounded-lg">${error.message}</div>`;
+                showError(error.message);
             } finally {
                 submitButton.disabled = false;
-                buttonText.textContent = 'Consultar';
-                spinner.classList.add('hidden');
+                buttonText.classList.remove('hidden');
+                buttonSpinner.classList.add('hidden');
             }
         });
+
+        function showError(message) {
+            resultContainer.innerHTML = `<div class="bg-red-50 border border-red-200 text-red-800 p-6 rounded-xl"><p class="font-bold">Error</p><p>${message}</p></div>`;
+            resultContainer.classList.remove('hidden');
+        }
+
+        function displayNotFound(caseId) {
+            resultContainer.innerHTML = `<div class="bg-white border border-gray-200 rounded-2xl shadow-lg p-8"><h3 class="text-2xl font-bold text-gray-900">Folio no encontrado</h3><p class="mt-4 text-gray-600">No hemos podido encontrar ninguna solicitud con el folio <span class="font-bold text-black">${caseId}</span>. Por favor, verifica que el número sea correcto.</p></div>`;
+            resultContainer.classList.remove('hidden');
+        }
+
+        function displayResult(caseId, data) {
+            resultContainer.innerHTML = `
+                <div class="bg-white border border-gray-200 rounded-2xl shadow-lg p-8">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-sm text-gray-500">Número de Folio</p>
+                            <h3 class="text-2xl font-bold text-gray-900">${caseId}</h3>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm text-gray-500">Estado Actual</p>
+                            <p class="text-2xl font-bold text-sage-green">${data.status}</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <p class="text-sm text-gray-500">Última Actualización: <span class="font-medium text-gray-900">${data.lastUpdate}</span></p>
+                        ${data.description ? `<p class="mt-4 text-gray-600">${data.description}</p>` : ''}
+                        <p class="mt-6 text-sm text-gray-500 italic">Cualquier actualización importante o si requerimos más información, te contactaremos al correo electrónico que proporcionaste en tu solicitud.</p>
+                    </div>
+                </div>`;
+            resultContainer.classList.remove('hidden');
+        }
     </script>
 </body>
 </html>
