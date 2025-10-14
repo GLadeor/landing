@@ -22,6 +22,7 @@
         }
         /* Definiendo colores de la nueva paleta: Verde Salvia y Terracota */
         .bg-sage-green { background-color: #5F7161; }
+        .bg-sage-light { background-color: #D8E2DC; }
         .hover\:bg-sage-green-dark:hover { background-color: #49584B; }
         .text-sage-green { color: #5F7161; }
         .border-sage-green { border-color: #5F7161; }
@@ -76,8 +77,8 @@
             <div class="text-center relative">
                 <p class="text-lg font-semibold text-terracotta tracking-wider uppercase">We protect you from the nameless</p>
                 <h2 class="text-5xl font-lora text-gray-900 sm:text-7xl tracking-tight leading-tight mt-4">Tu historia digital, reescrita por ti.</h2>
-                <p class="mt-8 text-lg text-gray-600 max-w-3xl mx-auto">
-                    Gestionamos la eliminación de contenido no deseado en internet. Conectamos con plataformas de todo el mundo para proteger tu identidad digital de forma confidencial y efectiva.
+                <p class="mt-8 text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto">
+                    Tomamos el control de tu presencia online. Eliminamos contenido no deseado y contactamos plataformas a nivel mundial para resguardar tu identidad digital con total confidencialidad y eficacia.
                 </p>
             </div>
         </section>
@@ -109,8 +110,64 @@
         <section id="nosotros" class="w-full py-24 px-6 md:px-12 scroll-mt-24 text-center">
             <h3 class="text-4xl font-lora text-gray-900 sm:text-5xl tracking-tight">Un Enfoque Humano en un Mundo Digital</h3>
             <p class="mt-6 text-lg text-gray-600 max-w-4xl mx-auto">
-                Somos un equipo con base en Monterrey, México, dedicado a ofrecer un servicio confidencial y personalizado. Entendemos la angustia que genera la exposición no deseada en internet y abordamos cada caso con la empatía y la seriedad que merece. Tu tranquilidad es nuestra prioridad.
+                Somos un equipo con base en Monterrey, México, dedicado a ofrecer un servicio confidencial y personalizado. Entendemos la angustia que genera la exposición no deseada en internet y abordamos cada caso con la empatía y la seriedad que merece. Brindamos nuestra experiencia en contactarnos con operadores de internet, y tratamos cada caso con humanidad y objetividad.
             </p>
+        </section>
+
+
+        <!-- Nuestro Proceso Section -->
+        <section id="proceso" class="w-full py-24 px-6 md:px-12 scroll-mt-24 bg-white">
+            <div class="max-w-4xl mx-auto text-center">
+                <h3 class="text-4xl font-lora text-gray-900 sm:text-5xl tracking-tight mb-4">Nuestro Proceso</h3>
+                <p class="text-lg text-gray-600 mb-16 max-w-3xl mx-auto">
+                    Tenemos experiencia procesando material íntimo, amenazas, derechos de autor y uso de imagen que residen en distintas capas de internet.
+                </p>
+                
+                <!-- Timeline Container -->
+                <div class="relative text-left max-w-2xl mx-auto">
+                    <!-- Vertical Line -->
+                    <div class="absolute left-5 top-2 h-full border-l-2 border-gray-200" style="height: calc(100% - 2rem);"></div>
+
+                    <!-- Step 1 -->
+                    <div class="mb-12 relative dynamic-text opacity-0 transform translate-y-5 transition-all duration-700 ease-out">
+                        <div class="flex items-start">
+                            <div class="z-10 flex-shrink-0 w-10 h-10 rounded-full border-2 border-sage-green bg-sage-light text-sage-green flex items-center justify-center font-bold text-lg">1</div>
+                            <div class="ml-6">
+                                <h4 class="text-xl font-bold text-gray-900 mb-1">Consulta y Análisis Inicial</h4>
+                                <p class="text-gray-600">
+                                    Una vez que ingresas los detalles, iniciamos un análisis exhaustivo de los URLs reportados y evaluamos los mejores canales para mitigar el ataque cibernético.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="mb-12 relative dynamic-text opacity-0 transform translate-y-5 transition-all duration-700 ease-out" style="transition-delay: 150ms;">
+                        <div class="flex items-start">
+                            <div class="z-10 flex-shrink-0 w-10 h-10 rounded-full border-2 border-sage-green bg-sage-light text-sage-green flex items-center justify-center font-bold text-lg">2</div>
+                            <div class="ml-6">
+                                <h4 class="text-xl font-bold text-gray-900 mb-1">Videollamada de Sincronización</h4>
+                                <p class="text-gray-600">
+                                   Agendamos una videollamada para sincronizarnos en el plan de acción, establecer expectativas claras, y discutir los costos y modalidades de pago de forma transparente.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative dynamic-text opacity-0 transform translate-y-5 transition-all duration-700 ease-out" style="transition-delay: 300ms;">
+                        <div class="flex items-start">
+                            <div class="z-10 flex-shrink-0 w-10 h-10 rounded-full border-2 border-sage-green bg-sage-light text-sage-green flex items-center justify-center font-bold text-lg">3</div>
+                            <div class="ml-6">
+                                <h4 class="text-xl font-bold text-gray-900 mb-1">Ejecución y Seguimiento</h4>
+                                <p class="text-gray-600">
+                                   Iniciamos el proceso de gestión para la eliminación del contenido. Podrás dar seguimiento al estado de tu caso a través de nuestro portal con el folio proporcionado.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
 
@@ -297,7 +354,29 @@
         closeModalButton.addEventListener('click', hideModal);
         understandButton.addEventListener('click', hideModal);
         minorAlertModal.addEventListener('click', (e) => { if (e.target === minorAlertModal) hideModal(); });
+
+        // Script para animación de texto dinámico al hacer scroll
+        const animatedElements = document.querySelectorAll('.dynamic-text');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('opacity-0', 'translate-y-5');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        animatedElements.forEach(el => {
+            observer.observe(el);
+        });
     </script>
 
 </body>
 </html>
+
+
+
+
+
+
+
