@@ -47,9 +47,8 @@
     <header class="w-full bg-white/80 backdrop-blur-sm p-6 z-40 border-b border-gray-200">
         <div class="max-w-6xl mx-auto flex items-center justify-between">
             <a href="./index.html" class="flex items-center">
-                 <!-- Ruta del logo actualizada a logo1.png -->
-                 <img src="images/logo1.png" alt="GestionPrivacidad Logo" class="h-10 w-auto mr-2"> 
-                 <!-- Puedes ajustar la clase 'h-10' para cambiar el tamaño -->
+                 <!-- Ruta del logo actualizada a logoverde.png -->
+                 <img src="images/logoverde.png" alt="GestionPrivacidad Logo" class="h-16 w-auto mr-2"> 
             </a>
             <nav class="hidden sm:flex items-center space-x-8">
                 <a href="#servicios" class="text-gray-700 hover:text-black transition-colors">Servicios</a>
@@ -207,7 +206,7 @@
                 <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
             <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-4">
-                <svg class="h-15 w-10 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.007H12v-.007z" /></svg>
+                <svg class="h-10 w-10 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.007H12v-.007z" /></svg>
             </div>
             <h3 class="text-2xl font-bold text-gray-900">Atención Importante</h3>
             <p class="mt-4 text-gray-600">Nuestro servicio está destinado exclusivamente a casos que involucran a adultos.</p>
@@ -234,7 +233,7 @@
             if (serviceSelect.value !== 'intimo') adultContentCheck.checked = false;
         });
 
-        contactForm.addEventListener('submit', (event) => {
+        contactForm.addEventListener('submit', async (event) => {
             event.preventDefault();
             resultMessage.textContent = '';
             resultMessage.classList.remove('text-red-600', 'text-green-600');
@@ -253,16 +252,45 @@
                 minorAlertModal.classList.remove('hidden');
                 return;
             }
-            // --- SIMULACIÓN DE ENVÍO ---
+            
             submitButton.disabled = true;
-            resultMessage.classList.add('text-green-600');
-            resultMessage.textContent = 'Gracias por tu mensaje. Nos pondremos en contacto contigo a la brevedad.';
-            contactForm.reset();
-            setTimeout(() => {
+            buttonText.textContent = 'Enviando...';
+
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('/api/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.folio) {
+                    resultMessage.innerHTML = `
+                        <div class="text-green-700 text-left p-4 bg-green-50 rounded-lg border border-green-200">
+                            <p class="font-bold">¡Gracias! Tu solicitud ha sido enviada con éxito.</p>
+                            <p class="mt-2">Tu número de folio es: <span class="font-bold text-gray-900 bg-gray-200 px-2 py-1 rounded">${result.folio}</span></p>
+                            <p class="mt-2">Guárdalo para consultar el estado de tu caso en nuestra página de <a href="./seguimiento.html" class="underline hover:text-black">Seguimiento</a>.</p>
+                        </div>
+                    `;
+                    contactForm.reset();
+                } else {
+                    throw new Error(result.error || 'Algo salió mal. No se pudo procesar tu solicitud.');
+                }
+            } catch (error) {
+                resultMessage.textContent = `Error: ${error.message}`;
+                resultMessage.classList.add('text-red-600');
+            } finally {
                 submitButton.disabled = false;
-                resultMessage.textContent = '';
-                adultContentCheckContainer.classList.add('hidden');
-            }, 5000);
+                buttonText.textContent = 'Enviar para Análisis Gratuito';
+                 setTimeout(() => {
+                    resultMessage.innerHTML = '';
+                    adultContentCheckContainer.classList.add('hidden');
+                }, 10000); 
+            }
         });
 
         function hideModal() { minorAlertModal.classList.add('hidden'); }
