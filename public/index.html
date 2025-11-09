@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GestionPrivacidad - Expertos en Eliminación de Huella Digital</title>
+    <title>GestionPrivacidad - Consulta Confidencial</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
@@ -11,8 +11,9 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #FDFCFB; /* Un fondo muy suave y cálido */
-            color: #312F2F; /* Un gris oscuro en lugar de negro puro */
+            /* El fondo ahora es el terracota claro para toda la página */
+            background-color: #FAEFE7; 
+            color: #312F2F; 
         }
         html {
             scroll-behavior: smooth;
@@ -26,100 +27,29 @@
         .text-sage-green { color: #5F7161; }
         .border-sage-green { border-color: #5F7161; }
         .ring-sage-green:focus { --tw-ring-color: #5F7161; }
-        
         .text-terracotta { color: #E49B64; }
-        .bg-terracotta-light { background-color: #FAEFE7; }
-        
-        .hero-bg-shape {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Header con Logo - Tamaño fijo y padding ajustado -->
+    <!-- Header con Logo -->
     <header class="w-full bg-white/80 backdrop-blur-sm p-4 z-40 border-b border-gray-200">
         <div class="max-w-6xl mx-auto flex items-center justify-between">
             <a href="./index.html" class="flex items-center">
                  <img src="images/logoverde.png" alt="GestionPrivacidad Logo" style="height: 80px;" class="w-auto mr-2"> 
             </a>
-            <nav class="hidden sm:flex items-center space-x-8">
-                <a href="#servicios" class="text-gray-700 hover:text-black transition-colors">Servicios</a>
-                <a href="#nosotros" class="text-gray-700 hover:text-black transition-colors">Nosotros</a>
-                <a href="#contacto" class="bg-sage-green text-white font-bold py-2 px-4 rounded-lg hover:bg-sage-green-dark transition-colors duration-300">Contacto</a>
-            </nav>
+            <!-- La navegación se elimina para enfocar la página solo en el formulario -->
         </div>
     </header>
 
     <main class="relative z-10">
-        
-        <!-- Hero Section con Layout Orgánico -->
-        <section class="relative w-full py-24 px-6 sm:py-32 overflow-hidden">
-             <div class="hero-bg-shape">
-                <svg viewBox="0 0 1024 1024" class="opacity-50">
-                    <defs>
-                        <radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                            <stop offset="0%" style="stop-color:rgb(228, 155, 100, 0.1);stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:rgb(253, 252, 251, 0);stop-opacity:1" />
-                        </radialGradient>
-                    </defs>
-                    <circle cx="200" cy="800" r="400" fill="url(#grad1)" />
-                    <circle cx="900" cy="300" r="300" fill="url(#grad1)" />
-                </svg>
-            </div>
-            <div class="max-w-4xl mx-auto text-center relative">
-                <p class="text-lg font-semibold text-terracotta tracking-wider uppercase">We protect you from the nameless</p>
-                <h2 class="text-5xl font-lora text-gray-900 sm:text-7xl tracking-tight leading-tight mt-4">Tu historia digital, reescrita por ti.</h2>
-                <p class="mt-8 text-lg text-gray-600 max-w-2xl mx-auto">
-                    Gestionamos la eliminación de contenido no deseado en internet. Conectamos con plataformas de todo el mundo para proteger tu identidad digital de forma confidencial y efectiva.
-                </p>
-            </div>
-        </section>
-
-        <!-- Services Section con más espaciado -->
-        <section id="servicios" class="w-full py-24 px-6 scroll-mt-24">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-16">
-                     <h3 class="text-4xl font-lora text-gray-900 sm:text-5xl tracking-tight">Nuestras Áreas de Especialización</h3>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-3xl shadow-lg border border-gray-100">
-                        <h4 class="text-xl font-bold text-sage-green mb-2">Contenido Íntimo</h4>
-                        <p class="text-gray-600">Máxima discreción para gestionar la eliminación de fotos y videos privados compartidos sin tu consentimiento.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-3xl shadow-lg border border-gray-100">
-                        <h4 class="text-xl font-bold text-sage-green mb-2">Acoso y Difamación</h4>
-                        <p class="text-gray-600">Combatimos el ciberacoso, trabajando para eliminar publicaciones que dañan tu imagen.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-3xl shadow-lg border border-gray-100">
-                        <h4 class="text-xl font-bold text-sage-green mb-2">Derechos de Autor</h4>
-                        <p class="text-gray-600">Protegemos tu trabajo creativo gestionando la eliminación de copias no autorizadas de tu material.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- About Us section (Nosotros) -->
-        <section id="nosotros" class="w-full max-w-4xl mx-auto py-24 px-6 scroll-mt-24 text-center">
-            <h3 class="text-4xl font-lora text-gray-900 sm:text-5xl tracking-tight">Un Enfoque Humano en un Mundo Digital</h3>
-            <p class="mt-6 text-lg text-gray-600">
-                Somos un equipo con base en Monterrey, México, dedicado a ofrecer un servicio confidencial y personalizado. Entendemos la angustia que genera la exposición no deseada en internet y abordamos cada caso con la empatía y la seriedad que merece. Tu tranquilidad es nuestra prioridad.
-            </p>
-        </section>
-
-
         <!-- Contact Form Section -->
-        <section id="contacto" class="w-full py-24 px-6 scroll-mt-24 bg-terracotta-light">
+        <section id="contacto" class="w-full py-16 px-6 sm:py-24">
             <div class="max-w-3xl mx-auto">
                  <div class="bg-white p-8 sm:p-12 rounded-3xl shadow-xl border border-gray-200">
                     <div class="text-center">
-                        <h3 class="text-3xl font-lora text-gray-900 tracking-tight">Inicia una Consulta Confidencial</h3>
+                        <p class="text-lg font-semibold text-terracotta tracking-wider uppercase">We protect you from the nameless</p>
+                        <h3 class="text-3xl font-lora text-gray-900 tracking-tight mt-2">Inicia una Consulta Confidencial</h3>
                         <p class="mt-2 text-sm text-gray-600">El análisis inicial es sin costo. Los servicios de eliminación conllevan una tarifa que se comunica tras el análisis.</p>
                     </div>
                     <form id="contactForm" class="mt-8 space-y-6" novalidate>
@@ -301,7 +231,3 @@
 
 </body>
 </html>
-
-
-
-
