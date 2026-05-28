@@ -1,144 +1,718 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Próximamente | Innovación en Proceso</title>
+    <title>Gestión Privacidad | Remoción de Contenido No Consentido en México</title>
+    <meta name="description" content="Servicio profesional y confidencial para eliminar fotos o videos íntimos publicados sin tu consentimiento de internet en México. Amparado por la Ley Olimpia y normativas internacionales.">
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter para una tipografía limpia y profesional -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
-        
         body {
-            font-family: 'Outfit', sans-serif;
-            background-color: #050505;
-            color: #ffffff;
-            overflow: hidden;
-        }
-
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 100%);
-        }
-
-        .blob {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
-            filter: blur(80px);
-            border-radius: 50%;
-            animation: move 20s infinite alternate;
-        }
-
-        @keyframes move {
-            from { transform: translate(-10%, -10%); }
-            to { transform: translate(10%, 10%); }
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .gradient-text {
-            background: linear-gradient(to right, #38bdf8, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-family: 'Inter', sans-serif;
         }
     </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f4ff',
+                            100: '#e1e9ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        },
+                        neutral: {
+                            850: '#172033',
+                            950: '#0b0f19'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
+<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-brand-500 selection:text-white">
 
-    <div class="animated-bg">
-        <div class="blob"></div>
-    </div>
-
-    <main class="max-w-4xl w-full">
-        <div class="text-center space-y-8">
-            <!-- Badge -->
-            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-sky-500/30 bg-sky-500/5 text-sky-400 text-sm font-medium mb-4">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
-                </span>
-                <span>Estamos evolucionando</span>
-            </div>
-
-            <h1 class="text-5xl md:text-7xl font-semibold tracking-tight">
-                Diseñando el <br> <span class="gradient-text">futuro digital</span>
-            </h1>
-
-            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-                Nuestra nueva plataforma está en fase de despliegue. Estamos puliendo cada detalle para ofrecerte una experiencia sin precedentes.
-            </p>
-
-            <!-- Sección de Pilares (Reemplaza al cronómetro) -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-8">
-                <div class="glass-card p-6 rounded-3xl text-left hover:border-sky-500/30 transition-colors group">
-                    <div class="w-10 h-10 rounded-xl bg-sky-500/10 flex items-center justify-center mb-4 group-hover:bg-sky-500/20">
-                        <svg class="w-6 h-6 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    </div>
-                    <h3 class="text-white font-medium mb-1">Rendimiento</h3>
-                    <p class="text-slate-500 text-sm">Optimizado para la máxima velocidad en Cloudflare.</p>
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-gradient-to-tr from-brand-600 to-indigo-500 p-2 rounded-lg text-white">
+                    <i data-lucide="shield-check" class="w-6 h-6"></i>
                 </div>
-                <div class="glass-card p-6 rounded-3xl text-left hover:border-indigo-500/30 transition-colors group">
-                    <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center mb-4 group-hover:bg-indigo-500/20">
-                        <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                    </div>
-                    <h3 class="text-white font-medium mb-1">Seguridad</h3>
-                    <p class="text-slate-500 text-sm">Protección de nivel empresarial en cada conexión.</p>
-                </div>
-                <div class="glass-card p-6 rounded-3xl text-left hover:border-purple-500/30 transition-colors group">
-                    <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center mb-4 group-hover:bg-purple-500/20">
-                        <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.172-1.172a4 4 0 115.656 5.656L15 13"></path></svg>
-                    </div>
-                    <h3 class="text-white font-medium mb-1">Diseño</h3>
-                    <p class="text-slate-500 text-sm">Interfaz moderna centrada en el usuario final.</p>
+                <div>
+                    <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">GestionPrivacidad</span>
+                    <span class="text-[10px] block text-brand-500 tracking-wider font-semibold uppercase">México</span>
                 </div>
             </div>
-
-            <!-- Suscripción Sutil -->
-            <div class="pt-12">
-                <form id="subscribeForm" class="flex flex-col sm:flex-row items-center justify-center gap-3">
-                    <input 
-                        type="email" 
-                        placeholder="tu@email.com" 
-                        required
-                        class="w-full sm:w-64 bg-white/5 border border-white/10 rounded-2xl px-5 py-3 focus:outline-none focus:ring-2 focus:ring-sky-500/50 transition-all text-white placeholder:text-slate-600"
-                    >
-                    <button 
-                        type="submit"
-                        class="w-full sm:w-auto bg-white text-black font-semibold py-3 px-8 rounded-2xl hover:bg-slate-200 transition-colors"
-                    >
-                        Avísame al lanzar
-                    </button>
-                </form>
-                <p id="successMessage" class="hidden mt-4 text-sky-400 text-sm">
-                    Perfecto. Te mantendremos informado.
-                </p>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="#como-funciona" class="hover:text-white transition-colors">¿Cómo funciona?</a>
+                <a href="#ley-olimpia" class="hover:text-white transition-colors">Marco Legal</a>
+                <a href="#preguntas-frecuentes" class="hover:text-white transition-colors">Preguntas Frecuentes</a>
+                <a href="#recursos" class="hover:text-white transition-colors">Ayuda y Recursos</a>
+            </nav>
+            <div>
+                <a href="#solicitud" class="bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-all duration-200 shadow-lg shadow-brand-500/10 hover:shadow-brand-500/20 inline-flex items-center space-x-2">
+                    <span>Iniciar Retiro</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
             </div>
         </div>
-    </main>
+    </header>
 
-    <footer class="fixed bottom-8 w-full text-center">
-        <p class="text-slate-600 text-xs tracking-widest uppercase">© 2024 Tu Marca Digital</p>
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden pt-12 pb-24 lg:pt-20 lg:pb-32">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_40%)]"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(99,102,241,0.08),transparent_50%)]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 text-left space-y-6">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 bg-slate-900 border border-slate-800 rounded-full text-xs text-slate-300">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>Servicio Confidencial y Privado en México</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-none">
+                        Eliminamos tus fotos íntimas de internet de forma <span class="bg-gradient-to-r from-brand-400 to-indigo-400 bg-clip-text text-transparent">definitiva y discreta</span>.
+                    </h1>
+                    <p class="text-lg text-slate-400 max-w-2xl">
+                        ¿Subieron contenido tuyo sin tu consentimiento? Te ayudamos a gestionar la baja inmediata de imágenes, videos o perfiles falsos de páginas web, foros y buscadores, respaldados por la legislación de privacidad y derechos de autor.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <a href="#solicitud" class="bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-500 hover:to-brand-600 text-white font-semibold text-lg px-8 py-4 rounded-xl text-center shadow-xl shadow-brand-500/20 transition-all transform hover:-translate-y-0.5">
+                            Comenzar Proceso de Remoción
+                        </a>
+                        <a href="#como-funciona" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-semibold text-lg px-8 py-4 rounded-xl text-center transition-all">
+                            Saber cómo lo hacemos
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-3 gap-6 pt-8 border-t border-slate-900">
+                        <div>
+                            <p class="text-2xl font-bold text-white">100%</p>
+                            <p class="text-xs text-slate-400">Confidencialidad Garantizada</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-white">Rápido</p>
+                            <p class="text-xs text-slate-400">Gestión de baja inmediata</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-white">Ley Olimpia</p>
+                            <p class="text-xs text-slate-400">Alineado al marco legal MX</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hero Visual Box -->
+                <div class="lg:col-span-5 relative">
+                    <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-brand-500 to-indigo-500 opacity-20 blur-xl"></div>
+                    <div class="relative bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl">
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-xs font-semibold text-brand-400 uppercase tracking-widest">Nuestra Promesa</span>
+                            <i data-lucide="lock" class="w-5 h-5 text-slate-500"></i>
+                        </div>
+                        <ul class="space-y-4 text-sm text-slate-300">
+                            <li class="flex items-start space-x-3">
+                                <i data-lucide="check" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+                                <span><strong>Sin Almacenamiento:</strong> No guardamos tus archivos íntimos en nuestros servidores. Solo gestionamos enlaces.</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <i data-lucide="check" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+                                <span><strong>Atención Humana:</strong> Trato empático, respetuoso y profesional, libre de juicios.</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <i data-lucide="check" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+                                <span><strong>Seguimiento Seguro:</strong> Comunicación encriptada por canales seguros (Telegram o Correo Seguro).</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <i data-lucide="shield-alert" class="w-5 h-5 text-amber-500 shrink-0 mt-0.5"></i>
+                                <span><strong>Exclusivo Adultos:</strong> No procesamos contenido que involucre a menores de edad bajo ninguna circunstancia.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="como-funciona" class="py-20 bg-slate-900/50 border-y border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Un proceso simple, seguro y enfocado en tu tranquilidad</h2>
+                <p class="text-slate-400 text-lg">Nosotros nos encargamos del desgaste técnico y de comunicación con administradores de páginas web y motores de búsqueda.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-8 relative">
+                    <div class="absolute top-0 right-0 -mt-4 mr-4 bg-slate-950 border border-slate-800 text-brand-400 font-extrabold text-lg w-10 h-10 rounded-full flex items-center justify-center">1</div>
+                    <div class="bg-brand-500/10 text-brand-400 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="file-text" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Envías la Información</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Completa nuestro formulario seguro indicando los enlaces (URLs) donde se encuentra expuesto tu contenido. No necesitas subir tus fotos íntimas, solo los links de las páginas web.
+                    </p>
+                </div>
+                <!-- Step 2 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-8 relative">
+                    <div class="absolute top-0 right-0 -mt-4 mr-4 bg-slate-950 border border-slate-800 text-brand-400 font-extrabold text-lg w-10 h-10 rounded-full flex items-center justify-center">2</div>
+                    <div class="bg-brand-500/10 text-brand-400 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="send" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Gestión de Retiro</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Iniciamos los reclamos legales de derechos de autor (DMCA), apelaciones a hosting, buscadores (Google, Bing) y normativas de privacidad locales para remover la visualización del material.
+                    </p>
+                </div>
+                <!-- Step 3 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-8 relative">
+                    <div class="absolute top-0 right-0 -mt-4 mr-4 bg-slate-950 border border-slate-800 text-brand-400 font-extrabold text-lg w-10 h-10 rounded-full flex items-center justify-center">3</div>
+                    <div class="bg-brand-500/10 text-brand-400 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="check-circle" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Verificación y Cierre</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Te enviamos pruebas de la remoción de los enlaces. Una vez concluido el caso, todos tus datos de contacto y detalles del reporte se eliminan por completo de nuestros sistemas.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form/Portal Section -->
+    <section id="solicitud" class="py-20 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden">
+                <div class="p-6 sm:p-10 border-b border-slate-800 bg-slate-950">
+                    <span class="text-xs font-bold uppercase tracking-wider text-brand-500">Portal Seguro de Solicitudes</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Formulario de Contratación de Servicio</h2>
+                    <p class="text-slate-400 text-sm mt-2">Por favor, lee detalladamente y completa los campos. Tu privacidad es nuestra absoluta prioridad.</p>
+                </div>
+
+                <!-- Form Steps Indicator -->
+                <div class="px-6 py-4 bg-slate-900/50 border-b border-slate-800 flex justify-between items-center text-xs font-medium text-slate-400">
+                    <div class="flex items-center space-x-2" id="step1-indicator">
+                        <span class="w-6 h-6 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold">1</span>
+                        <span class="text-white">Declaraciones y Filtros</span>
+                    </div>
+                    <div class="h-px bg-slate-800 grow mx-4 hidden sm:block"></div>
+                    <div class="flex items-center space-x-2 text-slate-500" id="step2-indicator">
+                        <span class="w-6 h-6 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center font-bold">2</span>
+                        <span>Contacto Seguro</span>
+                    </div>
+                    <div class="h-px bg-slate-800 grow mx-4 hidden sm:block"></div>
+                    <div class="flex items-center space-x-2 text-slate-500" id="step3-indicator">
+                        <span class="w-6 h-6 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center font-bold">3</span>
+                        <span>Enlaces Reportados</span>
+                    </div>
+                </div>
+
+                <!-- Main Form Tag -->
+                <form id="requestForm" class="p-6 sm:p-10 space-y-8" onsubmit="submitForm(event)">
+                    
+                    <!-- STEP 1: Declaraciones Obligatorias (Filtros de Negocio) -->
+                    <div id="step-1" class="space-y-6">
+                        <div class="bg-slate-950 border border-slate-800 rounded-xl p-5 space-y-3">
+                            <h3 class="text-sm font-semibold text-brand-400 flex items-center space-x-2">
+                                <i data-lucide="info" class="w-4 h-4"></i>
+                                <span>Requisitos y Filtros de Admisión Obligatorios</span>
+                            </h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Para garantizar la legalidad de nuestro servicio y la seguridad de la comunidad, es indispensable que leas y aceptes bajo protesta de decir verdad las siguientes declaraciones de buena fe.
+                            </p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <!-- Declaración 1: Buena Fe -->
+                            <label class="flex items-start space-x-3 p-4 bg-slate-950/40 border border-slate-800/80 rounded-xl cursor-pointer hover:border-slate-700 transition-all select-none">
+                                <input type="checkbox" id="check-good-faith" class="mt-1 w-5 h-5 rounded border-slate-800 bg-slate-950 text-brand-600 focus:ring-brand-500 focus:ring-offset-slate-900" required>
+                                <span class="text-sm text-slate-300 leading-relaxed">
+                                    <strong class="text-white block mb-0.5">Declaratoria de Buena Fe</strong>
+                                    Declaro de buena fe que soy el/la titular del derecho a la privacidad afectado (víctima directa), o que cuento con la autorización escrita y expresa de la víctima para actuar como su representante legal en este trámite. Toda la información provista en este formulario es verídica.
+                                </span>
+                            </label>
+
+                            <!-- Declaración 2: Solo Adultos / No CSAM (Filtro Estricto) -->
+                            <label class="flex items-start space-x-3 p-4 bg-amber-950/20 border border-amber-900/40 rounded-xl cursor-pointer hover:border-amber-800 transition-all select-none">
+                                <input type="checkbox" id="check-adult-only" class="mt-1 w-5 h-5 rounded border-amber-800 bg-slate-950 text-amber-600 focus:ring-amber-500 focus:ring-offset-slate-900" required>
+                                <span class="text-sm text-amber-200/90 leading-relaxed">
+                                    <strong class="text-amber-400 block mb-0.5">Filtro de Edad y Exclusión de Contenido Infantil (CSAM)</strong>
+                                    Declaro que la persona cuya imagen fue vulnerada es <strong>mayor de edad (18 años o más)</strong> en México. <span class="font-bold underline text-amber-300">Este servicio NO procesa reportes ni acepta contenido que involucre a menores de edad.</span> Entiendo que cualquier sospecha de explotación o contenido infantil será rechazada de inmediato y reportada a las autoridades federales competentes.
+                                </span>
+                            </label>
+
+                            <!-- Declaración 3: Mayor de edad -->
+                            <label class="flex items-start space-x-3 p-4 bg-slate-950/40 border border-slate-800/80 rounded-xl cursor-pointer hover:border-slate-700 transition-all select-none">
+                                <input type="checkbox" id="check-legal-age" class="mt-1 w-5 h-5 rounded border-slate-800 bg-slate-950 text-brand-600 focus:ring-brand-500 focus:ring-offset-slate-900" required>
+                                <span class="text-sm text-slate-300 leading-relaxed">
+                                    <strong class="text-white block mb-0.5">Mayoría de Edad del Solicitante</strong>
+                                    Confirmo que yo (el solicitante que llena este formulario) soy una persona mayor de 18 años con plena capacidad jurídica para contratar servicios de gestión privada.
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="pt-4 flex justify-end">
+                            <button type="button" onclick="nextStep(2)" id="btn-next-1" disabled class="px-6 py-3 bg-brand-600/50 text-slate-400 rounded-xl font-semibold inline-flex items-center space-x-2 cursor-not-allowed transition-all">
+                                <span>Continuar</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: Datos de Contacto Seguro -->
+                    <div id="step-2" class="space-y-6 hidden">
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="client_name" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Nombre o Alias (Confidencial)</label>
+                                <input type="text" id="client_name" name="name" placeholder="Ej. Juan Pérez o un Alias seguro" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all outline-none">
+                            </div>
+                            <div>
+                                <label for="secure_channel" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Canal de Contacto Preferido</label>
+                                <select id="secure_channel" name="contact_channel" onchange="toggleContactInput()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all outline-none">
+                                    <option value="email">Correo Electrónico Seguro</option>
+                                    <option value="telegram">Telegram (Recomendado para anonimato)</option>
+                                    <option value="whatsapp">WhatsApp</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="contact-detail-wrapper">
+                            <label id="contact-detail-label" for="contact_detail" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Dirección de Correo Electrónico</label>
+                            <input type="text" id="contact_detail" name="contact" placeholder="ejemplo@correo.com" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all outline-none">
+                            <p class="text-xs text-slate-500 mt-2">Usaremos este canal de forma estrictamente privada para darte actualizaciones de tu caso.</p>
+                        </div>
+
+                        <div class="pt-6 border-t border-slate-800 flex justify-between">
+                            <button type="button" onclick="prevStep(1)" class="px-6 py-3 bg-slate-950 border border-slate-800 text-slate-300 rounded-xl font-semibold hover:bg-slate-900 transition-all">
+                                Regresar
+                            </button>
+                            <button type="button" onclick="nextStep(3)" class="px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-semibold inline-flex items-center space-x-2 transition-all">
+                                <span>Continuar</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: Enlaces y Envíos -->
+                    <div id="step-3" class="space-y-6 hidden">
+                        <div>
+                            <label for="urls" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Enlaces donde se encuentra el contenido (Uno por línea)</label>
+                            <textarea id="urls" name="urls" rows="5" placeholder="https://paginaweb.com/foto-no-consentida&#10;https://forodemexico.com/hilo-falso" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 font-mono text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all outline-none"></textarea>
+                            <p class="text-xs text-amber-500 mt-2 flex items-center space-x-1.5">
+                                <i data-lucide="shield-alert" class="w-4 h-4 shrink-0"></i>
+                                <span>Por motivos de seguridad y de normativas, <strong>NO subas las imágenes íntimas a este servidor</strong>. Solo requerimos las URLs públicas para proceder con las bajas.</span>
+                            </p>
+                        </div>
+
+                        <div>
+                            <label for="comments" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Información adicional / Contexto (Opcional)</label>
+                            <textarea id="comments" name="comments" rows="3" placeholder="Por favor detalla si conoces al perpetrador, si hay extorsión activa, o cualquier otro dato técnico de utilidad." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all outline-none"></textarea>
+                        </div>
+
+                        <div class="pt-6 border-t border-slate-800 flex justify-between">
+                            <button type="button" onclick="prevStep(2)" class="px-6 py-3 bg-slate-950 border border-slate-800 text-slate-300 rounded-xl font-semibold hover:bg-slate-900 transition-all">
+                                Regresar
+                            </button>
+                            <button type="submit" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold inline-flex items-center space-x-2 transition-all shadow-lg shadow-emerald-600/10 hover:shadow-emerald-600/20">
+                                <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                                <span>Enviar Solicitud de Contratación</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ley Olimpia Information Section -->
+    <section id="ley-olimpia" class="py-20 bg-slate-900/40 border-y border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 relative">
+                    <div class="absolute inset-0 bg-brand-500/10 rounded-2xl filter blur-xl"></div>
+                    <div class="relative bg-slate-950 border border-slate-800 rounded-2xl p-8 space-y-6">
+                        <div class="inline-block bg-brand-600/10 border border-brand-500/30 text-brand-400 text-xs font-bold px-3 py-1 rounded-full uppercase">
+                            Derechos de las Víctimas en México
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">¿Qué es la Ley Olimpia?</h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            No es una ley independiente, sino un conjunto de reformas legislativas encaminadas a reconocer la violencia digital y sancionar los delitos que violen la intimidad sexual de las personas a través de medios digitales.
+                        </p>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            En México, difundir, publicar o compartir imágenes íntimas sin consentimiento se sanciona con penas de <strong>3 a 6 años de prisión</strong> y multas económicas de acuerdo con el Código Penal Federal y locales.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-7 space-y-6">
+                    <h2 class="text-3xl font-extrabold text-white sm:text-4xl">Cómo se integra nuestro servicio con la Ley Olimpia</h2>
+                    <p class="text-slate-400 text-lg">
+                        Mientras las fiscalías de justicia mexicanas llevan a cabo los procesos penales correspondientes contra el agresor (procesos que pueden tardar meses), nuestro servicio actúa de forma **técnica inmediata** para minimizar el daño.
+                    </p>
+                    
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <h4 class="text-white font-bold flex items-center space-x-2 text-sm">
+                                <i data-lucide="circle-dot" class="w-4 h-4 text-brand-500"></i>
+                                <span>Contención Rápida</span>
+                            </h4>
+                            <p class="text-slate-400 text-xs leading-relaxed">Actuamos directo con proveedores de internet internacionales para remover enlaces, acelerando los tiempos del sistema de justicia tradicional.</p>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="text-white font-bold flex items-center space-x-2 text-sm">
+                                <i data-lucide="circle-dot" class="w-4 h-4 text-brand-500"></i>
+                                <span>Apoyo de Evidencias</span>
+                            </h4>
+                            <p class="text-slate-400 text-xs leading-relaxed">Si decides denunciar formalmente ante la Fiscalía, te entregamos un reporte técnico de remoción y persistencia que puede complementar tu carpeta de investigación.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources and Redirection section (Strict Child content warning & help) -->
+    <section id="recursos" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-2xl p-8 sm:p-12 relative overflow-hidden">
+                <div class="absolute right-0 bottom-0 translate-x-10 translate-y-10 w-96 h-96 bg-brand-500/5 rounded-full filter blur-3xl"></div>
+                
+                <div class="max-w-3xl relative z-10 space-y-6">
+                    <span class="inline-flex items-center space-x-2 px-3 py-1 bg-amber-950/40 border border-amber-900/60 rounded-full text-xs text-amber-300 font-semibold">
+                        <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
+                        <span>Atención de Casos y Denuncias Oficiales</span>
+                    </span>
+                    <h2 class="text-3xl font-extrabold text-white">¿Necesitas denunciar o necesitas ayuda institucional?</h2>
+                    <p class="text-slate-400 text-base leading-relaxed">
+                        Nuestro servicio es privado y gestionado por profesionales para la baja rápida de internet. Sin embargo, si deseas denunciar penalmente a tu agresor o si el reporte involucra de alguna forma a un menor de edad, te instamos a contactar de inmediato con las entidades correspondientes en México:
+                    </p>
+                    
+                    <div class="grid sm:grid-cols-2 gap-6 pt-4">
+                        <div class="bg-slate-950 border border-slate-800/80 rounded-xl p-5 space-y-3">
+                            <h4 class="font-bold text-white text-sm flex items-center space-x-2">
+                                <i data-lucide="shield" class="w-4.5 h-4.5 text-brand-400"></i>
+                                <span>Guardia Nacional Mexicana</span>
+                            </h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">Para reportes inmediatos de pornografía infantil (CSAM), ciberextorsión, acoso cibernético o fraudes digitales.</p>
+                            <div class="text-xs text-brand-400 font-semibold space-y-1">
+                                <p>Tel: 088 (Atención 24 hrs)</p>
+                                <p>Email: certmex@gn.gob.mx</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950 border border-slate-800/80 rounded-xl p-5 space-y-3">
+                            <h4 class="font-bold text-white text-sm flex items-center space-x-2">
+                                <i data-lucide="heart" class="w-4.5 h-4.5 text-rose-400"></i>
+                                <span>Colectivos y Apoyo Legal</span>
+                            </h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">Asociaciones civiles en México lideradas por defensoras que te acompañan emocional y legalmente bajo la Ley Olimpia.</p>
+                            <div class="text-xs text-rose-400 font-semibold space-y-1">
+                                <p>Frente Nacional para la Sororidad</p>
+                                <p>Luchadoras MX (luchadoras.mx)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="preguntas-frecuentes" class="py-20 bg-slate-900/30 border-t border-slate-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <h2 class="text-3xl font-extrabold text-white text-center mb-12">Preguntas Frecuentes</h2>
+            
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 transition-all">
+                    <button class="flex justify-between items-center w-full text-left font-semibold text-white text-base" onclick="toggleFaq(this)">
+                        <span>¿Cuánto tiempo tarda en removerse el contenido?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transform transition-transform"></i>
+                    </button>
+                    <div class="mt-4 text-slate-400 text-sm hidden">
+                        <p class="leading-relaxed">
+                            Los tiempos de remoción dependen de la plataforma de hosting. En buscadores como Google o Bing, las URL suelen desindexarse en un lapso de 24 a 72 horas. Para páginas de contenido adulto que utilicen servidores con cumplimiento legal, la remoción puede tomar entre 3 y 7 días hábiles.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 transition-all">
+                    <button class="flex justify-between items-center w-full text-left font-semibold text-white text-base" onclick="toggleFaq(this)">
+                        <span>¿Cómo garantizan mi anonimato y discreción?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transform transition-transform"></i>
+                    </button>
+                    <div class="mt-4 text-slate-400 text-sm hidden">
+                        <p class="leading-relaxed">
+                            No te pedimos identificación oficial ni tu nombre real si no te sientes cómodo compartiéndolo; puedes usar un alias. Recomendamos usar canales encriptados como Telegram para el seguimiento de tu caso. Además, una vez resuelto el retiro, destruimos toda la bitácora y base de datos relacionada a tu reporte.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 transition-all">
+                    <button class="flex justify-between items-center w-full text-left font-semibold text-white text-base" onclick="toggleFaq(this)">
+                        <span>¿Qué pasa si el contenido se encuentra en un servidor en el extranjero?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transform transition-transform"></i>
+                    </button>
+                    <div class="mt-4 text-slate-400 text-sm hidden">
+                        <p class="leading-relaxed">
+                            Incluso si los servidores se localizan en jurisdicciones donde la Ley Olimpia mexicana no aplica de forma directa, utilizamos protocolos de derechos de autor internacionales (DMCA) y de cumplimiento de protección de privacidad de buscadores y proveedores globales de infraestructura CDN (como Cloudflare, AWS, etc.) para forzar la inaccesibilidad y el retiro del contenido.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 transition-all">
+                    <button class="flex justify-between items-center w-full text-left font-semibold text-white text-base" onclick="toggleFaq(this)">
+                        <span>¿Por qué no aceptan casos de menores de edad?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transform transition-transform"></i>
+                    </button>
+                    <div class="mt-4 text-slate-400 text-sm hidden">
+                        <p class="leading-relaxed">
+                            Cualquier contenido íntimo que involucre a menores de edad está catalogado internacionalmente como pornografía/explotación infantil (CSAM). El manejo o almacenamiento técnico de estas URL por entidades privadas está estrictamente restringido por la ley y conlleva obligaciones criminales inmediatas. Los casos de menores de edad deben ser procesados directamente por la Policía Cibernética y la Guardia Nacional, por lo que nosotros no intervenimos para no obstaculizar los procesos judiciales.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-slate-950 border-t border-slate-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-12 gap-8 mb-8">
+                <div class="md:col-span-5 space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="bg-brand-600/20 border border-brand-500/30 p-2 rounded-lg text-brand-400">
+                            <i data-lucide="shield-check" class="w-5 h-5"></i>
+                        </div>
+                        <span class="font-bold text-lg text-white">GestionPrivacidad.com</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+                        Servicio especializado en la remoción técnica y baja digital de material íntimo publicado sin consentimiento. Operando con estricto apego al marco ético, derechos digitales y confidencialidad total en los Estados Unidos Mexicanos.
+                    </p>
+                </div>
+                
+                <div class="md:col-span-4 space-y-4">
+                    <h4 class="text-sm font-semibold text-white">Cumplimiento Legal</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Aviso de Privacidad (LFPDPPP)</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Términos del Servicio</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Garantía de Confidencialidad</a></li>
+                        <li><a href="#solicitud" class="hover:text-white transition-colors">Declaración de Buena Fe</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-3 space-y-4">
+                    <h4 class="text-sm font-semibold text-white">Contacto Seguro</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Para salvaguardar la privacidad de las comunicaciones y evitar filtraciones, no contamos con un buzón de correo público. 
+                    </p>
+                    <a href="#solicitud" class="text-xs font-bold text-brand-400 hover:text-brand-300 transition-colors inline-flex items-center space-x-1">
+                        <span>Ingresa tu email en el portal de arriba</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </a>
+                    <p class="text-[10px] text-slate-500 pt-2">Hosteado y Protegido por Cloudflare Pages & WAF</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-900 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500">
+                <p>&copy; 2026 GestionPrivacidad.com. Todos los derechos reservados.</p>
+                <p class="mt-2 sm:mt-0">Diseñado para la protección digital de usuarios de México.</p>
+            </div>
+        </div>
     </footer>
 
+    <!-- Custom Success Modal (No Alerts) -->
+    <div id="successModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden">
+        <div class="relative w-full max-w-md bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-6 text-center">
+            <div class="mx-auto w-16 h-16 bg-emerald-500/10 text-emerald-400 rounded-full flex items-center justify-center">
+                <i data-lucide="shield-check" class="w-10 h-10"></i>
+            </div>
+            <div class="space-y-2">
+                <h3 class="text-2xl font-bold text-white">Solicitud Recibida</h3>
+                <p class="text-sm text-slate-300">
+                    Tu caso ha sido registrado con éxito. Un gestor asignado y altamente especializado se comunicará contigo de manera estrictamente confidencial en un plazo menor a 12 horas.
+                </p>
+            </div>
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-400 space-y-1.5 text-left">
+                <p><strong>¿Qué sigue?</strong></p>
+                <p>1. Revisaremos las URLs que nos enviaste de manera técnica.</p>
+                <p>2. Te enviaremos la cotización o pasos de retiro por tu canal preferido.</p>
+                <p>3. Destruiremos toda tu información una vez terminado tu servicio.</p>
+            </div>
+            <button onclick="closeModal()" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3 rounded-xl transition-all">
+                Entendido
+            </button>
+        </div>
+    </div>
+
+    <!-- Script Logic for steps, validation and interactions -->
     <script>
-        document.getElementById('subscribeForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            this.style.opacity = '0';
-            setTimeout(() => {
-                this.style.display = 'none';
-                document.getElementById('successMessage').classList.remove('hidden');
-            }, 300);
-        });
+        // Inicializar iconos de Lucide
+        lucide.createIcons();
+
+        // Control de Pasos del Formulario
+        let currentStep = 1;
+
+        // Elementos de los Checks de validación del Paso 1
+        const checkGoodFaith = document.getElementById('check-good-faith');
+        const checkAdultOnly = document.getElementById('check-adult-only');
+        const checkLegalAge = document.getElementById('check-legal-age');
+        const btnNext1 = document.getElementById('btn-next-1');
+
+        // Función para validar que se cumplan las declaraciones previas en el Paso 1
+        function validateStep1() {
+            if (checkGoodFaith.checked && checkAdultOnly.checked && checkLegalAge.checked) {
+                btnNext1.removeAttribute('disabled');
+                btnNext1.className = "px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-semibold inline-flex items-center space-x-2 cursor-pointer transition-all";
+            } else {
+                btnNext1.setAttribute('disabled', 'true');
+                btnNext1.className = "px-6 py-3 bg-brand-600/50 text-slate-400 rounded-xl font-semibold inline-flex items-center space-x-2 cursor-not-allowed transition-all";
+            }
+        }
+
+        // Event listeners para los checkbox de declaración de buena fe
+        checkGoodFaith.addEventListener('change', validateStep1);
+        checkAdultOnly.addEventListener('change', validateStep1);
+        checkLegalAge.addEventListener('change', validateStep1);
+
+        // Cambiar dinámicamente el placeholder del canal de contacto
+        function toggleContactInput() {
+            const channel = document.getElementById('secure_channel').value;
+            const input = document.getElementById('contact_detail');
+            const label = document.getElementById('contact-detail-label');
+
+            if (channel === 'email') {
+                label.innerText = 'Dirección de Correo Electrónico';
+                input.placeholder = 'ejemplo@correo.com';
+                input.type = 'email';
+            } else if (channel === 'telegram') {
+                label.innerText = 'Usuario de Telegram';
+                input.placeholder = 'Ej. @MiUsuarioTelegram';
+                input.type = 'text';
+            } else if (channel === 'whatsapp') {
+                label.innerText = 'Número de Celular con LADA (+52)';
+                input.placeholder = 'Ej. +52 55 1234 5678';
+                input.type = 'tel';
+            }
+        }
+
+        // Navegación por pasos
+        function nextStep(step) {
+            // Evitar avanzar al paso 2 si no están firmados los acuerdos
+            if (step === 2 && (!checkGoodFaith.checked || !checkAdultOnly.checked || !checkLegalAge.checked)) {
+                return;
+            }
+
+            // Ocultar todos los pasos
+            document.getElementById('step-1').classList.add('hidden');
+            document.getElementById('step-2').classList.add('hidden');
+            document.getElementById('step-3').classList.add('hidden');
+
+            // Mostrar el paso solicitado
+            document.getElementById(`step-${step}`).classList.remove('hidden');
+
+            // Actualizar indicadores visuales
+            updateIndicators(step);
+            currentStep = step;
+        }
+
+        function prevStep(step) {
+            document.getElementById('step-1').classList.add('hidden');
+            document.getElementById('step-2').classList.add('hidden');
+            document.getElementById('step-3').classList.add('hidden');
+
+            document.getElementById(`step-${step}`).classList.remove('hidden');
+            updateIndicators(step);
+            currentStep = step;
+        }
+
+        function updateIndicators(step) {
+            const ind1 = document.getElementById('step1-indicator');
+            const ind2 = document.getElementById('step2-indicator');
+            const ind3 = document.getElementById('step3-indicator');
+
+            // Reset
+            ind1.className = "flex items-center space-x-2 text-slate-500";
+            ind2.className = "flex items-center space-x-2 text-slate-500";
+            ind3.className = "flex items-center space-x-2 text-slate-500";
+
+            ind1.querySelector('span:first-child').className = "w-6 h-6 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center font-bold";
+            ind2.querySelector('span:first-child').className = "w-6 h-6 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center font-bold";
+            ind3.querySelector('span:first-child').className = "w-6 h-6 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center font-bold";
+
+            if (step >= 1) {
+                ind1.className = "flex items-center space-x-2 text-white";
+                ind1.querySelector('span:first-child').className = "w-6 h-6 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold";
+            }
+            if (step >= 2) {
+                ind2.className = "flex items-center space-x-2 text-white";
+                ind2.querySelector('span:first-child').className = "w-6 h-6 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold";
+            }
+            if (step >= 3) {
+                ind3.className = "flex items-center space-x-2 text-white";
+                ind3.querySelector('span:first-child').className = "w-6 h-6 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold";
+            }
+        }
+
+        // Toggle para Acordeón de FAQs
+        function toggleFaq(button) {
+            const icon = button.querySelector('i');
+            const answer = button.nextElementSibling;
+
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                answer.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Envío simulado del formulario con éxito (Cumplimiento de Cloudflare & GitHub Pages)
+        function submitForm(event) {
+            event.preventDefault();
+
+            // Aquí recolectamos la información de manera segura
+            const clientName = document.getElementById('client_name').value;
+            const contactChannel = document.getElementById('secure_channel').value;
+            const contactDetail = document.getElementById('contact_detail').value;
+            const urlsValue = document.getElementById('urls').value;
+            const additionalComments = document.getElementById('comments').value;
+
+            // Almacenar temporalmente los datos para enviarlos (por ejemplo, a un Cloudflare Worker)
+            console.log("Procesando datos cifrados de contratación:", {
+                clientName, contactChannel, contactDetail, urlsValue, additionalComments
+            });
+
+            // NOTA TÉCNICA PARA EL CLIENTE:
+            // Al alojar en GitHub + Cloudflare Pages, puedes apuntar este 'submit' a un endpoint propio
+            // usando un Cloudflare Worker seguro para recibir reportes sin revelar bases de datos.
+
+            // Mostrar modal de éxito personalizado (reemplaza a los "alert" intrusivos)
+            document.getElementById('successModal').classList.remove('hidden');
+        }
+
+        // Cerrar modal de éxito y restablecer formulario
+        function closeModal() {
+            document.getElementById('successModal').classList.add('hidden');
+            document.getElementById('requestForm').reset();
+            validateStep1();
+            nextStep(1);
+        }
     </script>
 </body>
 </html>
