@@ -1,53 +1,32 @@
-// functions/api/list.js
+async function sameKey(a, b) {
+  const enc = new TextEncoder();
+  const [ha, hb] = await Promise.all([
+    crypto.subtle.digest('SHA-256', enc.encode(a ?? '')),
+    crypto.subtle.digest('SHA-256', enc.encode(b ?? '')),
+  ]);
+  return crypto.subtle.timingSafeEqual(ha, hb);
+}
 
-// --- IMPORTANTE: CAMBIA ESTA CONTRASEÑA ---
-const DASHBOARD_SECRET_KEY = "tostadas-quemadas-REYNOSA"; 
-
-export async function onRequestPost(context) {
+export async function onRequestPost({ request, env }) {
   try {
-    const body = await context.request.json();
-    const providedKey = body.secretKey;
-
-    // 1. Verificación de Seguridad
-    if (providedKey !== DASHBOARD_SECRET_KEY) {
-      return new Response(JSON.stringify({ error: 'Acceso no autorizado' }), {
-        status: 401,
-        headers: { 'Content-Type': 'application/json' },
-      });
+    const { secretKey } = await request.json();
+    if (!env.DASHBOARD_SECRET_KEY || !(await sameKey(secretKey, env.DASHBOARD_SECRET_KEY))) {
+      return Response.json({ error: 'Acceso no autorizado' }, { status: 401 });
     }
 
-    // 2. Conexión a la Base de Datos KV
-    const CONTACT_FORM = context.env.CONTACT_FORM;
-    if (!CONTACT_FORM) {
-        throw new Error("El KV namespace 'CONTACT_FORM' no está enlazado (bound).");
-    }
-    
-    // 3. Obtener todas las claves (folios)
-    const list = await CONTACT_FORM.list();
-    if (list.keys.length === 0) {
-        return new Response(JSON.stringify([]), {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' },
-        });
-    }
+    const kv = env.CONTACT_FORM;
+    const cases = [];
+    let cursor;
+    do {
+      const page = await kv.list({ cursor });
+      const values = await Promise.all(page.keys.map(k => kv.get(k.name)));
+      for (const v of values) if (v) cases.push(JSON.parse(v));
+      cursor = page.list_complete ? undefined : page.cursor;
+    } while (cursor);
 
-    // 4. Obtener el valor (datos del caso) para cada clave
-    const promises = list.keys.map(key => CONTACT_FORM.get(key.name));
-    const values = await Promise.all(promises);
-
-    // 5. Devolver la lista de casos
-    const cases = values.map(value => JSON.parse(value));
-    
-    return new Response(JSON.stringify(cases), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
-
-  } catch (error) {
-    console.error("Error en /api/list:", error.message);
-    return new Response(JSON.stringify({ error: 'Error interno del servidor' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return Response.json(cases);
+  } catch (e) {
+    console.error('Error en /api/list:', e.message);
+    return Response.json({ error: 'Error interno del servidor' }, { status: 500 });
   }
 }
