@@ -1,36 +1,34 @@
-// functions/api/submit.js
-// Se cambia a onRequestPost para manejar explícitamente solicitudes POST.
+const MAX = { nombre: 100, email: 150, telefono: 30, mensaje: 2000 }; // ajusta a tus campos reales
 
-export async function onRequestPost(context) {
+export async function onRequestPost({ request, env }) {
   try {
-    const data = await context.request.json();
-    const folio = `GP-${Date.now()}-${crypto.randomUUID().slice(0, 4).toUpperCase()}`;
+    if (Number(request.headers.get('content-length') || 0) > 10_000) {
+      return Response.json({ error: 'Solicitud demasiado grande' }, { status: 413 });
+    }
+    const data = await request.json();
 
+    const clean = {};
+    for (const [field, max] of Object.entries(MAX)) {
+      const v = data[field];
+      if (typeof v === 'string' && v.trim()) clean[field] = v.trim().slice(0, max);
+    }
+    if (!clean.nombre || !clean.email) {
+      return Response.json({ error: 'Datos incompletos' }, { status: 400 });
+    }
+
+    const folio = `GP-${crypto.randomUUID().toUpperCase()}`;
     const caseData = {
-      ...data,
-      folio: folio,
-      status: "Recibido - En Análisis",
+      ...clean,
+      folio,
+      status: 'Recibido - En Análisis',
       lastUpdate: new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'short', day: 'numeric' }),
-      description: "Hemos recibido tu solicitud y nuestro equipo la está revisando. Analizaremos la viabilidad y nos pondremos en contacto si requerimos más información."
+      description: 'Hemos recibido tu solicitud y nuestro equipo la está revisando.',
     };
+    await env.CONTACT_FORM.put(folio, JSON.stringify(caseData));
 
-    const CONTACT_FORM = context.env.CONTACT_FORM;
-    await CONTACT_FORM.put(folio, JSON.stringify(caseData));
-
-    return new Response(JSON.stringify({ 
-        message: 'Solicitud recibida con éxito', 
-        folio: folio 
-    }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-    });
-
-  } catch (error) {
-    console.error("Error en /api/submit:", error);
-    return new Response(JSON.stringify({ error: 'Error interno al procesar la solicitud.' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return Response.json({ message: 'Solicitud recibida con éxito', folio });
+  } catch (e) {
+    console.error('Error en /api/submit:', e.message);
+    return Response.json({ error: 'Error interno al procesar la solicitud.' }, { status: 500 });
   }
 }
-
